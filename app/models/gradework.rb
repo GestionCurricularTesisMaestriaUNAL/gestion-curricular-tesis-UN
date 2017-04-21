@@ -1,10 +1,10 @@
 class Gradework < ApplicationRecord
 
   has_and_belongs_to_many :users
-  has_many :filegradeworks
+  has_many :filegradeworks, class_name: "FileGradework"
   has_many :feedbacks
 
-  validates :name, :begin_date, :semester, presence: true
+  validates :name, presence: true
 
   default_scope {order("gradeworks.name")}
   scope :order_by_name, -> (ord) {order("gradeworks.name #{ord}")}

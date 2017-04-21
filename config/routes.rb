@@ -13,10 +13,11 @@ Rails.application.routes.draw do
   resources :file_gradeworks
   resources :feedbacks
   resources :user_roles
-  resources :gradework_users
   resources :roles
   resources :users
   resources :gradeworks
+
+  post 'uploadfiles'=>'gradeworks#upload'
 
   get 'contact_us/index'
   get 'home/index'

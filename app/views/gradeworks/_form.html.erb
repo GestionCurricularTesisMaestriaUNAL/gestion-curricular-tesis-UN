@@ -1,4 +1,4 @@
-<%= content_for(:css) do %>
+<%= content_for(:head) do %>
 
     <%= stylesheet_link_tag 'dropzone' %>
     <%= stylesheet_link_tag 'basic' %>
@@ -7,124 +7,111 @@
 
 <div class="form-margin-gradework">
   <%= form_for(gradework) do |f| %>
-    <% if gradework.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(gradework.errors.count, "error") %> prohibited this gradework from being saved:</h2>
+      <% if gradework.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(gradework.errors.count, "error") %> prohibited this gradework from being saved:</h2>
 
-        <ul>
-        <% gradework.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
+            <ul>
+              <% gradework.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <%= f.label :name, 'Nombre', class: 'label-gradework' %>
+      <div class="field">
+        <%= f.text_field :name , class: 'form-gradework' %>
       </div>
-    <% end %>
-    <%= f.label :name, 'Nombre', class: 'label-gradework' %>
-    <div class="field">
-      <%= f.text_field :name , class: 'form-gradework' %>
-    </div>
 
-    <%= f.label :description, 'Descripción', class: 'label-gradework' %>
-    <div class="field">
-      <%= f.text_area :description, class: 'form-gradework' %>
-    </div>
+      <%= f.label :description, 'Descripción', class: 'label-gradework' %>
+      <div class="field">
+        <%= f.text_area :description, class: 'form-gradework' %>
+      </div>
 
-    <!-- Aqui va para llamar la lista de estudiantes-->
-    <%= f.label :status, 'Estudiante', class: 'label-gradework' %>
-    <div class="field">
-      <%= select_tag(:students, options_from_collection_for_select(@students ,:id, :full_name, @grad_students), multiple: true, :prompt => "Ninguno") %>
-    </div>
+      <!-- Aqui va para llamar la lista de estudiantes-->
+      <%= f.label :status, 'Estudiante', class: 'label-gradework' %>
+      <div class="field">
+        <%= select_tag(:students, options_from_collection_for_select(@students ,:id, :full_name, @grad_students), multiple: true, :prompt => "Ninguno") %>
+      </div>
 
-    <!-- Aqui va para llamar la lista de Directores-->
-    <%= f.label :status, 'Director', class: 'label-gradework' %>
-    <div class="field">
-      <%= select_tag(:directors, options_from_collection_for_select(@directors ,:id, :full_name, @grad_directors), :prompt => "Ninguno") %>
+      <!-- Aqui va para llamar la lista de Directores-->
+      <%= f.label :status, 'Director', class: 'label-gradework' %>
+      <div class="field">
+        <%= select_tag(:directors, options_from_collection_for_select(@directors ,:id, :full_name, @grad_directors), :prompt => "Ninguno") %>
 
-    </div>
+      </div>
 
-    <!-- Aqui va para llamar la lista de Jurados-->
-    <%= f.label :status, 'Jurado', class: 'label-gradework' %>
-    <div class="field">
-      <%= select_tag(:juries, options_from_collection_for_select(@juries,:id, :full_name, @grad_juries), multiple: true, :prompt => "Ninguno") %>
-    </div>
+      <!-- Aqui va para llamar la lista de Jurados-->
+      <%= f.label :status, 'Jurado', class: 'label-gradework' %>
+      <div class="field">
+        <%= select_tag(:juries, options_from_collection_for_select(@juries,:id, :full_name, @grad_juries), multiple: true, :prompt => "Ninguno") %>
+      </div>
 
 
-    <%= f.label :begin_date, 'Fecha de inicio', class: 'label-gradework' %>
-    <div class="field">
-      <%= f.date_select :begin_date, class: 'form-gradework' %>
-    </div>
+      <%= f.label :begin_date, 'Fecha de inicio', class: 'label-gradework' %>
+      <div class="field">
+        <%= f.date_select :begin_date, class: 'form-gradework' %>
+      </div>
 
-    <%= f.label :semester, 'Semestre', class: 'label-gradework' %>
-    <div class="field">
-      <%= f.text_field :semester, class: 'form-gradework' %>
-    </div>
+      <%= f.label :semester, 'Semestre', class: 'label-gradework' %>
+      <div class="field">
+        <%= f.text_field :semester, class: 'form-gradework' %>
+      </div>
 
-    <%= f.label :file, 'Archivo (Resolución)', class: 'label-gradework' %>
-    <div class="field">
-      <%= @gradework.file_identifier %>
+      <%= f.label :file, 'Archivo (Resolución)', class: 'label-gradework' %>
+      <input type=hidden name="files_list" id='fileslist'>
+
+
+
+      <div id="mydropzone" class="dropzone"></div>
+      <div id="msgBoard"></div>
       <br>
-      <%= f.file_field :file %>
-	  
-	  <div id="mydropzone" class="dropzone"></div>
-            <!-- This <div> elements shows a suitable message after a successful upload. -->
-            <div id="msgBoard">no sale</div>
-			
-
-      <div><%= link_to 'Borrar', @gradework.remove_file! %>
-        <%= @gradework.save %>
+      <input type='submit' value=<%= button_name %>>
       </div>
-    </div>
-	
-	<div class="actions text-center">
-      <%= f.submit value: button_name %>
-    </div>
-	
+
+
   <% end %>
-	
 
-	<%= form_for :request, :url => request.base_url+'/gradework/createFile', html: {id:'myForm'} do %>            
-            <div id="mydropzone" class="dropzone"><p>Aca esta</p></div>
-			
-            <!-- This <div> elements shows a suitable message after a successful upload. -->
-            <div id="msgBoard"></div>
-            <br>
-            <input type='submit' value="Create your product">
-            </div>
-    <% end %>
-		
-	<%= content_for(:javascript) do %>
-    <!-- include the dropzone library itself. -->
-	<%= javascript_include_tag "dropzone" %>
-		<script type="text/javascript">
-			var AUTH_TOKEN=$('meta[name="csrf-token"]').attr('content');
-			Dropzone.autoDiscover = false;
-			var myDropzone = new Dropzone("div#mydropzone",{
-				url: "<%= request.base_url %>/uploadfiles",
-				autoProcessQueue: false,
-				uploadMultiple: true,
-				addRemoveLinks:true,
-				parallelUploads:10,
-				params:{
-					'authenticity_token':  AUTH_TOKEN
-				},
-				successmultiple: function(data,response){
 
-					console.log(response);
-					$('#msgBoard').append(response.message).addClass("alert alert-success");
-					$('#msgBoard').delay(2000).fadeOut();
-					$('#fileslist').val(response.files_list);
-					$('#myForm').off('submit').submit();
-				}
-			});
-			$('#myForm').submit(function(e){
-				if(myDropzone.getQueuedFiles().length > 0){
-					e.preventDefault();
-					myDropzone.processQueue();
-				}
-			});
-		</script>
+  <%= content_for(:javascript) do %>
+      <!-- include the dropzone library itself. -->
+      <%= javascript_include_tag "dropzone" %>
+      <script type="text/javascript">
 
-	<% end %>
-</div>
+
+          var AUTH_TOKEN=$('meta[name="csrf-token"]').attr('content');
+          console.log(AUTH_TOKEN);
+          Dropzone.autoDiscover = false;
+          var myDropzone = new Dropzone(".dropzone",{
+              url: "<%= request.base_url %>/uploadfiles",
+              autoProcessQueue: false,
+              uploadMultiple: true,
+              addRemoveLinks:true,
+              parallelUploads:10,
+              params:{
+                  'authenticity_token':  AUTH_TOKEN
+              },
+              successmultiple: function(data,response){
+
+
+                  console.log(response);
+                  $('#msgBoard').append(response.message).addClass("alert alert-success");
+                  $('#msgBoard').delay(2000).fadeOut();
+                  $('#fileslist').val(response.files_list);
+                  $('#new_gradework').off('submit').submit();
+              }
+          });
+          //console.log($('#myForm'));
+          $('#new_gradework').submit(function(e){
+              if(myDropzone.getQueuedFiles().length > 0){
+                  e.preventDefault();
+                  myDropzone.processQueue();
+              }
+          });
+      </script>
+
+  <% end %>
+  </div>
 
 
 

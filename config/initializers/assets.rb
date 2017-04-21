@@ -26,7 +26,6 @@ Rails.application.config.assets.precompile += %w( layout/unal.js )
 Rails.application.config.assets.precompile += %w( layout/students.js )
 Rails.application.config.assets.precompile += %w( layout/directors.js )
 Rails.application.config.assets.precompile += %w( layout/jurys.js )
-
 Rails.application.config.assets.precompile += %w(dropzone.js basic.css dropzone.css)
 
 

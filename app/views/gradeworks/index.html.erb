@@ -1,276 +1,319 @@
 
 
 <% content_for :head do %>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
-<link rel="stylesheet" type="text/css" href="/sweetalert-master/dist/sweetalert.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/sweetalert-master/dist/sweetalert.css">
 
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
-
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <%= stylesheet_link_tag 'dropzone' %>
+    <%= stylesheet_link_tag 'basic' %>
 
 
 <% end %>
 <div class="main-container">
-    <div class="container-header">
-        <h1>Administración de tesis</h1>
-    </div>
-    <div class="container">
-        <div class="row">
-					<div class="col-md-6" style="overflow: scroll;">
-						<table id="gradeworksTable" class="display" cellspacing="0" width="100%">
-							<thead>
-									<tr>
-											<th>Nombre</th>
-											<th>Estado</th>
-											<th>Estudiante</th>
-											<th>Director</th>
-											<th>Jurados</th>
-											<th>Semestre</th>
-									</tr>
-							</thead>
-							<tfoot>
-									<tr>
-											<th>Nombre</th>
-											<th>Estado</th>
-											<th>Estudiante</th>
-											<th>Director</th>
-											<th>Jurados</th>
-											<th>Semestre</th>
-									</tr>
-							</tfoot>
-							<tbody>
-								<% @gradeworks.each do |gradework| %>
-									<tr data-id = '<%= gradework.id %>' data-name = '<%= gradework.name %>'  data-status = '<%= gradework.status %>'  
-									data-semester = '<%= gradework.semester %>'  >
-									<td><%= gradework.name %></td>
-									<td><%= gradework.status %></td>
-									<td>Estudiante</td>
-                  <td>Director</td>
-                  <td>Jurados</td>
-									<td><%= gradework.semester %></td>
-									</tr>
-								<% end %>
-							</tbody>
-					</table>
-					</div>
-					<div class="col-md-6 text-center" style="margin-top:5%;">
-						<div class="crud-button">
-								<button type="button" class="general-circle-button users-button" data-toggle="modal" data-target="#newGradeworkModal">
-								</button>
-								<p class="text-button-admin">Nuevo<p>
-						</div>
-						<div class="crud-button">
-								<button id="editButton" type="button" class="general-circle-button edit-button crud-button-disabled" data-toggle="modal" data-target="#editGradeworkModal" disabled>
-								</button>
-								<p class="text-button-admin">Modificar<p>
-						</div>
-						<div class="text-center">
-								<button id ="deleteButton" type="button" class="general-circle-button delete-button crud-button-disabled" data-id ="0" onclick="deleteGradework(this)" disabled>
-								</button>
-								<p class="text-button-admin" style="margin-left: auto; margin-right: auto;">Eliminar<p>
-						</div>
-					</div>
-					
+  <div class="container-header">
+    <h1>Administración de tesis</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6" style="overflow: scroll;">
+        <table id="gradeworksTable" class="display" cellspacing="0" width="100%">
+          <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Estudiante</th>
+            <th>Director</th>
+            <th>Jurados</th>
+            <th>Semestre</th>
+          </tr>
+          </thead>
+          <tfoot>
+          <tr>
+            <th>Nombre</th>
+            <th>Estado</th>
+            <th>Estudiante</th>
+            <th>Director</th>
+            <th>Jurados</th>
+            <th>Semestre</th>
+          </tr>
+          </tfoot>
+          <tbody>
+          <% @gradeworks.each do |gradework| %>
+              <tr data-id = '<%= gradework.id %>' data-name = '<%= gradework.name %>'  data-status = '<%= gradework.status %>'
+                  data-semester = '<%= gradework.semester %>'  >
+                <td><%= gradework.name %></td>
+                <td><%= gradework.status %></td>
+                <td>Estudiante</td>
+                <td>Director</td>
+                <td>Jurados</td>
+                <td><%= gradework.semester %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6 text-center" style="margin-top:5%;">
+        <div class="crud-button">
+          <button type="button" class="general-circle-button users-button" data-toggle="modal" data-target="#newGradeworkModal">
+          </button>
+          <p class="text-button-admin">Nuevo<p>
         </div>
+        <div class="crud-button">
+          <button id="editButton" type="button" class="general-circle-button edit-button crud-button-disabled" data-toggle="modal" data-target="#editGradeworkModal" disabled>
+          </button>
+          <p class="text-button-admin">Modificar<p>
+        </div>
+        <div class="text-center">
+          <button id ="deleteButton" type="button" class="general-circle-button delete-button crud-button-disabled" data-id ="0" onclick="deleteGradework(this)" disabled>
+          </button>
+          <p class="text-button-admin" style="margin-left: auto; margin-right: auto;">Eliminar<p>
+        </div>
+      </div>
+
     </div>
+  </div>
 </div>
 
 <!-- Modal Nueva Tesis-->
-<div class="modal fade" id="newGradeworkModal" tabindex="-1" role="dialog" 
+<div class="modal fade" id="newGradeworkModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close" 
-                   data-dismiss="modal">
-                       <span aria-hidden="true">&times;</span>
-                       <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title text-center" id="myModalLabel">
-                    Nueva tesis
-                </h4>
-            </div>
-            
-            <!-- Modal Body -->
-            <div class="modal-body">
-                
-                <form role="form" id="newForm" action="gradeworks" method="post">
-					<div class="form-group">
-                  	<label for="inputName">Nombre:</label>
-                    <input type="text" class="form-control"
-                      id="inputName" placeholder="Ingrese el nombre" name="gradework[name]" required/>
-									</div>
-									<div class="form-group">
-                  	<label for="inputDescription">Descripción:</label>
-                    <textarea type="text" rows="5" class="form-control"
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close"
+                data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title text-center" id="myModalLabel">
+          Nueva tesis
+        </h4>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+
+        <form role="form" id="newForm" action="gradeworks" method="post">
+          <div class="form-group">
+            <label for="inputName">Nombre:</label>
+            <input type="text" class="form-control"
+                   id="inputName" placeholder="Ingrese el nombre" name="gradework[name]" required/>
+          </div>
+          <div class="form-group">
+            <label for="inputDescription">Descripción:</label>
+            <textarea type="text" rows="5" class="form-control"
                       id="inputDescription" placeholder="Ingrese la descripción" name="gradework[description]" required></textarea>
-									</div>
-                  <div class="form-group">
-										<label for="students">Estudiantes:</label>
-											<%= select_tag(:students, options_from_collection_for_select(@students ,:id, :full_name, @grad_students), multiple: true, :prompt => "Ninguno", class: "form-control") %>
-									</div>
-					      <div class="form-group">
-                  	<label for="directors">Director:</label>
-                    <%= select_tag(:directors, options_from_collection_for_select(@directors ,:id, :full_name, @grad_directors), :prompt => "Ninguno", class: "form-control") %>
-									</div>
-									<div class="form-group">
-                  	<label for="juries">Jurados:</label>
-                    <%= select_tag(:juries, options_from_collection_for_select(@juries,:id, :full_name, @grad_juries), multiple: true, :prompt => "Ninguno", class: "form-control") %>
-									</div>
-					<div class="form-group date">
-                  <label for="inputRole">Fecha de inicio:</label>
-                  <div class="input-group input-append date" id="datePicker">
-                  <input type="text" class="form-control" name="date" />
-                  <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+          </div>
+          <div class="form-group">
+            <label for="students">Estudiantes:</label>
+            <%= select_tag(:students, options_from_collection_for_select(@students ,:id, :full_name, @grad_students), multiple: true, :prompt => "Ninguno", class: "form-control") %>
+          </div>
+          <div class="form-group">
+            <label for="directors">Director:</label>
+            <%= select_tag(:directors, options_from_collection_for_select(@directors ,:id, :full_name, @grad_directors), :prompt => "Ninguno", class: "form-control") %>
+          </div>
+          <div class="form-group">
+            <label for="juries">Jurados:</label>
+            <%= select_tag(:juries, options_from_collection_for_select(@juries,:id, :full_name, @grad_juries), multiple: true, :prompt => "Ninguno", class: "form-control") %>
+          </div>
+
+          <div class="form-group date">
+            <label for="inputRole">Fecha de inicio:</label>
+            <div class="input-group input-append date" id="datePicker">
+              <input type="text" class="form-control" name="begin_date" />
+              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
-					</div>
-            </div>
-            
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-success">Crear tesis</button>
-            </div>
-						</form>
-        </div>
+          </div>
+
+          <input type=hidden name="files_list" id='fileslist'>
+          <!-- We use this <div> element to initialize our Dropzone -->
+          <div id="mydropzone" class="dropzone"></div>
+          <!-- This <div> elements shows a suitable message after a successful upload. -->
+          <div id="msgBoard"></div>
+
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Crear tesis</button>
+      </div>
+      </form>
     </div>
+  </div>
 </div>
 
 <!-- Modal Editar Tesis-->
-<div class="modal fade" id="editGradeworkModal" tabindex="-1" role="dialog" 
+<div class="modal fade" id="editGradeworkModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <button type="button" class="close" 
-                   data-dismiss="modal">
-                       <span aria-hidden="true">&times;</span>
-                       <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title text-center" id="myModalLabel">
-                    Editar Tesis
-                </h4>
-            </div>
-            
-            <!-- Modal Body -->
-            <div class="modal-body">
-                
-                <form role="form" id="editForm" action="" method="post">
-									<input type="hidden" name="_method" value="put" />
-									<div class="form-group">
-                  	<label for="editName">Nombre:</label>
-                    <input type="text" class="form-control"
-                      id="editName" placeholder="Ingrese el nombre" name="gradework[firstname]" required/>
-									</div>
-									<div class="form-group">
-                  	<label for="editDescription">Descripción:</label>
-                    <textarea type="text" rows="5" class="form-control"
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close"
+                data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title text-center" id="myModalLabel">
+          Editar Tesis
+        </h4>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+
+        <form role="form" id="editForm" action="" method="post">
+          <input type="hidden" name="_method" value="put" />
+          <div class="form-group">
+            <label for="editName">Nombre:</label>
+            <input type="text" class="form-control"
+                   id="editName" placeholder="Ingrese el nombre" name="gradework[firstname]" required/>
+          </div>
+          <div class="form-group">
+            <label for="editDescription">Descripción:</label>
+            <textarea type="text" rows="5" class="form-control"
                       id="editDescription" placeholder="Ingrese la descripción" name="gradework[description]" required></textarea>
-									</div>
-                  <div class="form-group">
-										<label for="editStudents">Estudiantes:</label>
-											<%= select_tag(:students, options_from_collection_for_select(@students ,:id, :full_name, @grad_students), multiple: true, :prompt => "Ninguno", class: "form-control") %>
-									</div>
-					      <div class="form-group">
-                  	<label for="editDirector">Director:</label>
-                    <%= select_tag(:directors, options_from_collection_for_select(@directors ,:id, :full_name, @grad_directors), :prompt => "Ninguno", class: "form-control") %>
-									</div>
-									<div class="form-group">
-                  	<label for="editJuries">Jurados:</label>
-                    <%= select_tag(:juries, options_from_collection_for_select(@juries,:id, :full_name, @grad_juries), multiple: true, :prompt => "Ninguno", class: "form-control") %>
-									</div>
-                  	<div class="form-group date">
-                  <label for="inputRole">Fecha de inicio:</label>
-                  <div class="input-group input-append date" id="datePickerEdit">
-                  <input type="text" class="form-control" name="date" />
-                  <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+          </div>
+          <div class="form-group">
+            <label for="editStudents">Estudiantes:</label>
+            <%= select_tag(:students, options_from_collection_for_select(@students ,:id, :full_name, @grad_students), multiple: true, :prompt => "Ninguno", class: "form-control") %>
+          </div>
+          <div class="form-group">
+            <label for="editDirector">Director:</label>
+            <%= select_tag(:directors, options_from_collection_for_select(@directors ,:id, :full_name, @grad_directors), :prompt => "Ninguno", class: "form-control") %>
+          </div>
+          <div class="form-group">
+            <label for="editJuries">Jurados:</label>
+            <%= select_tag(:juries, options_from_collection_for_select(@juries,:id, :full_name, @grad_juries), multiple: true, :prompt => "Ninguno", class: "form-control") %>
+          </div>
+          <div class="form-group date">
+            <label for="inputRole">Fecha de inicio:</label>
+            <div class="input-group input-append date" id="datePickerEdit">
+              <input type="text" class="form-control" name="date" />
+              <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
             </div>
-					</div>
-            </div>
-            
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-success">Editar tesis</button>
-            </div>
-						</form>
-        </div>
+          </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Editar tesis</button>
+      </div>
+      </form>
     </div>
+  </div>
 </div>
 
+<%= content_for(:javascript) do %>
+    <!-- include the dropzone library itself. -->
+    <%= javascript_include_tag "dropzone" %>
+    <script type="text/javascript">
+        var AUTH_TOKEN=$('meta[name="csrf-token"]').attr('content');
+        Dropzone.autoDiscover = false;
+        var myDropzone = new Dropzone("div#mydropzone",{
+            url: "<%= request.base_url %>/uploadfiles",
+            autoProcessQueue: false,
+            uploadMultiple: true,
+            addRemoveLinks:true,
+            parallelUploads:10,
+            params:{
+                'authenticity_token':  AUTH_TOKEN
+            },
+            successmultiple: function(data,response){
+
+                console.log(response);
+                $('#msgBoard').append(response.message).addClass("alert alert-success");
+                $('#msgBoard').delay(2000).fadeOut();
+                $('#fileslist').val(response.files_list);
+                $('#newForm').off('submit').submit();
+            }
+        });
+        $('#newForm').submit(function(e){
+            if(myDropzone.getQueuedFiles().length > 0){
+                e.preventDefault();
+                myDropzone.processQueue();
+            }
+        });
+    </script>
+<% end %>
+
 <% content_for :bottom do %>
-<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
-<script src="/sweetalert-master/dist/sweetalert.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
-<script>
-	$(document).ready(function() {
-    var table = $('#gradeworksTable').DataTable();
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="/sweetalert-master/dist/sweetalert.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#gradeworksTable').DataTable();
 
-			$('#gradeworksTable tbody').on( 'click', 'tr', function () {
-					if ( $(this).hasClass('selected') ) {
-							$(this).removeClass('selected');
-							$('#editButton').prop( "disabled", true );
-							$('#editButton').addClass('crud-button-disabled');
-							$('#deleteButton').prop( "disabled", true );
-							$('#deleteButton').addClass('crud-button-disabled');
-					}
-					else {
-							table.$('tr.selected').removeClass('selected');
-							$(this).addClass('selected');
-							$('#editButton').prop( "disabled", false );
-							$('#editButton').removeClass('crud-button-disabled');
-							$('#deleteButton').prop( "disabled", false );
-							$('#deleteButton').removeClass('crud-button-disabled');
-							$('#deleteButton').data('id', $(this).data('id')) ;
-							$('#editFirstName').val($(this).data('firstname'));
-							$('#editLastName').val($(this).data('lastname'));
-							$('#editEmail').val($(this).data('email'));
-							$('#editDoc').val($(this).data('doc'));
-							$('#editPhone').val($(this).data('phone'));
-							var action = 'gradeworks/' + ($(this).data('id'))
-								$('#editForm').attr('action', action);
-							}
-			} );
-      $('#datePicker')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-        });
-        $('#datePickerEdit')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the date field
-        });
-	} );
+            $('#gradeworksTable tbody').on( 'click', 'tr', function () {
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                    $('#editButton').prop( "disabled", true );
+                    $('#editButton').addClass('crud-button-disabled');
+                    $('#deleteButton').prop( "disabled", true );
+                    $('#deleteButton').addClass('crud-button-disabled');
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    $('#editButton').prop( "disabled", false );
+                    $('#editButton').removeClass('crud-button-disabled');
+                    $('#deleteButton').prop( "disabled", false );
+                    $('#deleteButton').removeClass('crud-button-disabled');
+                    $('#deleteButton').data('id', $(this).data('id')) ;
+                    $('#editFirstName').val($(this).data('firstname'));
+                    $('#editLastName').val($(this).data('lastname'));
+                    $('#editEmail').val($(this).data('email'));
+                    $('#editDoc').val($(this).data('doc'));
+                    $('#editPhone').val($(this).data('phone'));
+                    var action = 'gradeworks/' + ($(this).data('id'))
+                    $('#editForm').attr('action', action);
+                }
+            } );
+            $('#datePicker')
+                .datepicker({
+                    format: 'mm/dd/yyyy'
+                })
+                .on('changeDate', function(e) {
+                    // Revalidate the date field
+                });
+            $('#datePickerEdit')
+                .datepicker({
+                    format: 'mm/dd/yyyy'
+                })
+                .on('changeDate', function(e) {
+                    // Revalidate the date field
+                });
+        } );
 
 
-</script>
-<script>
-	//Warning Message
-                function deleteGradework(obj){
-                    swal({
-											title: "Está seguro?",
-											text: "No se podran recuperar lo datos de la tesis en un futuro",
-											type: "warning",
-											showCancelButton: true,
-											confirmButtonColor: "#DD6B55",
-											confirmButtonText: "Confirmar",
-											closeOnConfirm: false
-                    },
-										function(){
-											$.ajax({
-												url: 'gradeworks/' + $(obj).data('id'),
+    </script>
+    <script>
+        //Warning Message
+        function deleteGradework(obj){
+            swal({
+                    title: "Está seguro?",
+                    text: "No se podran recuperar lo datos de la tesis en un futuro",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Confirmar",
+                    closeOnConfirm: false
+                },
+                function(){
+                    $.ajax({
+                        url: 'gradeworks/' + $(obj).data('id'),
                         type: 'DELETE'
-											});
-											swal("Elminado!", "La tesis ha sido eliminado", "success");
-											setTimeout(function(){
-														window.location.reload();
-											}, 1000); 
-										});
-										}
-</script>
+                    });
+                    swal("Elminado!", "La tesis ha sido eliminado", "success");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1000);
+                });
+        }
+    </script>
 <% end %>
