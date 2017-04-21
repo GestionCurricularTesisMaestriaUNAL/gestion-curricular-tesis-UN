@@ -42,7 +42,7 @@
 
       <%= f.label "Rol" %>
       <div class="field">
-        <%= select_tag(:rol, options_from_collection_for_select(@roles ,:id, :name, @rol_users), multiple: true, :prompt => "Ninguno") %>
+        <%= select_tag(:rol, options_from_collection_for_select(Role.all ,:id, :name, @rol_users), multiple: true, :prompt => "Ninguno") %>
       </div>
 
     </div>
