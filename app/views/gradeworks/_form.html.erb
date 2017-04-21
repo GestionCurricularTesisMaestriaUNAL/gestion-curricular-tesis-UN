@@ -1,3 +1,10 @@
+<%= content_for(:css) do %>
+
+    <%= stylesheet_link_tag 'dropzone' %>
+    <%= stylesheet_link_tag 'basic' %>
+
+<% end %>
+
 <div class="form-margin-gradework">
   <%= form_for(gradework) do |f| %>
     <% if gradework.errors.any? %>
@@ -56,20 +63,69 @@
       <%= @gradework.file_identifier %>
       <br>
       <%= f.file_field :file %>
+	  
+	  <div id="mydropzone" class="dropzone"></div>
+            <!-- This <div> elements shows a suitable message after a successful upload. -->
+            <div id="msgBoard">no sale</div>
+			
 
       <div><%= link_to 'Borrar', @gradework.remove_file! %>
         <%= @gradework.save %>
       </div>
     </div>
-
-
-
-
-
-
-    <div class="actions text-center">
+	
+	<div class="actions text-center">
       <%= f.submit value: button_name %>
     </div>
-
+	
   <% end %>
+	
+
+	<%= form_for :request, :url => request.base_url+'/gradework/createFile', html: {id:'myForm'} do %>            
+            <div id="mydropzone" class="dropzone"><p>Aca esta</p></div>
+			
+            <!-- This <div> elements shows a suitable message after a successful upload. -->
+            <div id="msgBoard"></div>
+            <br>
+            <input type='submit' value="Create your product">
+            </div>
+    <% end %>
+		
+	<%= content_for(:javascript) do %>
+    <!-- include the dropzone library itself. -->
+	<%= javascript_include_tag "dropzone" %>
+		<script type="text/javascript">
+			var AUTH_TOKEN=$('meta[name="csrf-token"]').attr('content');
+			Dropzone.autoDiscover = false;
+			var myDropzone = new Dropzone("div#mydropzone",{
+				url: "<%= request.base_url %>/uploadfiles",
+				autoProcessQueue: false,
+				uploadMultiple: true,
+				addRemoveLinks:true,
+				parallelUploads:10,
+				params:{
+					'authenticity_token':  AUTH_TOKEN
+				},
+				successmultiple: function(data,response){
+
+					console.log(response);
+					$('#msgBoard').append(response.message).addClass("alert alert-success");
+					$('#msgBoard').delay(2000).fadeOut();
+					$('#fileslist').val(response.files_list);
+					$('#myForm').off('submit').submit();
+				}
+			});
+			$('#myForm').submit(function(e){
+				if(myDropzone.getQueuedFiles().length > 0){
+					e.preventDefault();
+					myDropzone.processQueue();
+				}
+			});
+		</script>
+
+	<% end %>
 </div>
+
+
+
+
