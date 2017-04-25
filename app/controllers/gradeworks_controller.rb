@@ -71,7 +71,7 @@ class GradeworksController < ApplicationController
             p pic
             path = "#{Rails.root}/public/uploads/gradework/file/"+ @gradework.id.to_s+'/'
             File.rename( "#{Rails.root}/"+pic, path + File.basename(pic))
-            FileGradework.create(gradework_id: @gradework.id,name: pic , description: pic, path: path )
+            FileGradework.create(gradework_id: @gradework.id,name: File.basename(pic), description: MIME::Types.type_for(path), path: path )
           end
         end
 
@@ -117,11 +117,15 @@ class GradeworksController < ApplicationController
     end
   end
 
-  def download_pdf
+  def download
+
+    id = params[:id]
+    file = FileGradework.find(id)
+    #file = @file
     send_file(
-        "#{Rails.root}/public/your_file.pdf",
-        filename: "your_custom_file_name.pdf",
-        type: "application/pdf"
+        file.path + file.name,
+        filename: file.name,
+        type: ""
     )
   end
 

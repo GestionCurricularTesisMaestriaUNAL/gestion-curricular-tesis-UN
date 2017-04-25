@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'jurys/index'
   get 'jurys/home'
 
+
   resources :role_users
   resources :file_gradeworks
   resources :feedbacks
@@ -18,6 +19,7 @@ Rails.application.routes.draw do
   resources :gradeworks
 
   post 'uploadfiles'=>'gradeworks#upload'
+  get 'downloadfiles'=>'gradeworks#download'
 
   get 'contact_us/index'
   get 'home/index'

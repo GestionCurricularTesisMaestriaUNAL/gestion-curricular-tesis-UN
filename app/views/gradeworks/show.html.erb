@@ -88,6 +88,8 @@
           <thead>
           <tr>
             <th class="table-head">Nombre</th>
+            <th class="table-head">Descripcion</th>
+            <th class="table-head">path</th>
 
           </tr>
           </thead>
@@ -96,7 +98,9 @@
           <% @gradework.filegradeworks.each do |file| %>
               <tr>
 
-                <td><%= file.name %></td>
+                <td>
+                <%= link_to file.name, :controller => "gradeworks", :action => "download", :id => file %>
+                </td>
 
               </tr>
           <% end %>
