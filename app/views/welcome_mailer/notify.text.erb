@@ -1,0 +1,13 @@
+Bienvenido a la plataforma Gestion curricular de tesis
+
+===============================================
+
+Hola <%= @user.firstname %>, su cuenta ha sido registrada con exito en Gestion curricular de tesis de maestria.
+
+Cuenta con el rol(es): <% @user.roles.each do |role| %>
+												<%= role.name %>
+                        <% end %>
+
+Su contraseña es:
+
+Para acceder a nuestra plataforma entre al sitio: gestion-curricular.herokuapp.com
