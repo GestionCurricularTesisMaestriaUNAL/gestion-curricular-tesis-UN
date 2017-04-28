@@ -17,7 +17,7 @@ module ChartsHelper
 end
 
  def grading_count
-    bar_chart ({"Sin asignar estado" => @countnoStatus , "Calificado" => @statuscalificado , "Calificando" => @statuscalificando , "Sin calificar" => @statussincalificar}) , height: '300px', width:'50%', library: {
+    column_chart ({"Sin asignar estado" => @countnoStatus , "Calificado" => @statuscalificado , "Calificando" => @statuscalificando , "Sin calificar" => @statussincalificar}) , height: '300px', width:'50%', library: {
       title: {text: 'Usuarios creados', x: -20},
       colors: ['red', 'orange', 'green', 'blue', 'purple', 'brown'],      yAxis: {
          allowDecimals: false,
