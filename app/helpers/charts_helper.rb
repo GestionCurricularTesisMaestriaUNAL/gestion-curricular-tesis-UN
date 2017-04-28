@@ -66,7 +66,7 @@ def userspie_counts
     }
   end
   def tesisjur_count
-    bar_chart (@jurados.each{|x| puts "#{x}"  => 20} ) , height: '300px', width:'50%', library: {
+    bar_chart (@jurados.each) , height: '300px', width:'50%', library: {
       title: {text: 'Jurados vs tesis asignadas', x: 0},
       yAxis: {
          allowDecimals: false,
