@@ -2,7 +2,10 @@ class JurysController < ApplicationController
   
   def index
     @gradeworks = Gradework.all
-    @juries = User.users_jury
+    @gradework = Gradework.new
+    @feedbacks = Feedback.all
+    @grad_jury = @gradework.users.joins(:roles).where(roles: {name: "Jury"})
+
   end
 
   def new
