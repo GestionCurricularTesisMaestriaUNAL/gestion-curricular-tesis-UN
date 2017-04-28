@@ -5,16 +5,20 @@ class ChartsController < ApplicationController
   # GET /charts.json
   def index
     @charts = Chart.all
+    @users = User.all
+    @roles = Role.all
+    @gradeworks = Gradework.all
     @charts= Chart.all.extend(DescriptiveStatistics)
     @totalnuser = User.all.extend(DescriptiveStatistics)
+    @estgradework = Gradework.all.extend(DescriptiveStatistics)
 
     statusgrade
     countUsers
+    juriesgrade
+    dategrade
   end
 
   def countUsers
-    @users = User.all
-    @roles = Role.all
     @countJury = 0
     @countnoRol = 0
     @countStudent = 0
@@ -46,8 +50,6 @@ class ChartsController < ApplicationController
   end
 
 def statusgrade
-  @gradeworks = Gradework.all
-  @estgradework = Gradework.all.extend(DescriptiveStatistics)
   @totalgradeworks = @estgradework.number
   @countnoStatus = 0
   @statuscalificado = 0
@@ -69,6 +71,32 @@ def statusgrade
       end
     end
   end
+end
+
+def juriesgrade
+  @totalgradeworks = @estgradework.number
+  @users = User.all
+  @juries = User.users_jury
+  @jurados = []
+  @juries.each do |jury|
+    @jurados.push(jury.firstname+" "+jury.lastname)
+  end
+  @jurados
+end
+
+def dategrade
+  @cualquiera = []
+    @dategrade1 = 0
+    @dategrade2 = 0
+    @gradeworks.each do |gradework|
+      @cualquiera.push(gradework.created_at)
+      if gradework.created_at <= "2017-04-15" && gradework.created_at > "2017-04-01"
+        @dategrade1 += 1
+      end
+      if gradework.created_at <= "2017-04-27" && gradework.created_at > "2017-04-16"
+        @dategrade2 += 1
+      end
+    end
 end
 
 

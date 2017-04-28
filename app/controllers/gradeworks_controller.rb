@@ -29,7 +29,7 @@ class GradeworksController < ApplicationController
     @juries = User.users_jury
     @directors = User.users_director
     @students = User.users_student
-
+    
     @grad_directors = @gradework.users.joins(:roles).where(roles: {name: "Director"}).ids
     @grad_juries = @gradework.users.joins(:roles).where(roles: {name: "Jury"}).ids
     @grad_students = @gradework.users.joins(:roles).where(roles: {name: "Student"}).ids

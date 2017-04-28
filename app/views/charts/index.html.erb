@@ -14,84 +14,130 @@
         <h1>Charts</h1>
     </div>
     <div class="container">
-
-<div>
-<div class="pull-right">
-<p id="notice"><%= notice %></p>
-<p></p>
-<p> Numero de usuarios:</p>
-<p>  <%= @totalnuser.number %></p>
-<!--<% @users.each do |user| %>
-  <p>  <% user.roles.each do |role| %>
-    <div>
-      <%if role.name%>
-      <%= role.name %>
-      <%end%>
+      <p id="notice"><%= notice %></p>
+      <div class = row>
+        <div>
+          <h3>1. Asignación de roles a usuarios</h3>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3">
+          <p></p>
+          <p> Numero de usuarios:</p>
+          <p>  <%= @totalnuser.number %></p>
+          <p>Usuarios sin rol</p>
+          <p><%= @countnoRol%></p>
+          <p>Usuarios con rol asignado</p>
+          <p><%= @totalnuser.number - @countnoRol%></p>
+          <p>Usuarios con mas de un rol:</p>
+          <p><%= @rolesCreados - @totalnuser.number %></p>
+          <p></p>
+          <p></p>
+          <p>Jurados:</p>
+          <p><%= @countJury%></p>
+          <p>Estudiantes</p>
+          <p><%= @countStudent%></p>
+          <p>Profesores</p>
+          <p><%= @countTeacher%></p>
+          <p>Administradores</p>
+          <p><%= @countAdmin%></p>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-9">
+          <%= users_count %>
+        </div>
+      </div>
+      <div class = row>
+      <div class = "col-xs-12 col-sm-12 col-md-12 col-centered">
+        <%= usersrolpie_counts %>
+      </div>
+      <div class = "col-xs-12 col-sm-12 col-md-12 col-centered">
+        <%= userspie_counts %>
+      </div>
     </div>
-    <% end %> </p>
-<% end %>
--->
-<p>Usuarios sin rol</p>
-<p><%= @countnoRol%></p>
-<p>Usuarios con rol asignado</p>
-<p><%= @totalnuser.number - @countnoRol%></p>
-<p>Usuarios con mas de un rol:</p>
-<p><%= @rolesCreados - @totalnuser.number %></p>
-<p></p>
-<p>Jurados:</p>
-<p><%= @countJury%></p>
-<p>Estudiantes</p>
-<p><%= @countStudent%></p>
-<p>Profesores</p>
-<p><%= @countTeacher%></p>
-<p>Administradores</p>
-<p><%= @countAdmin%></p>
-</div>
-<div class="pull-left"
-<%= users_count %>
-</div>
-</div>
 
-<p></p>
-<p>Numero de tesis creadas</p>
-<p><%= @totalgradeworks%></p>
+      <hr style="color: #0056b2;" />
+      <span></span>
+      <div class = row>
+        <div>
+          <h3>2. Estado de calificación de las Tesis</h3>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-9">
+          <%= grading_count %>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3">
+          <p></p>
+          <p>Numero de tesis creadas</p>
+          <p><%= @totalgradeworks%></p>
 
-<p>Tesis sin asignar estado</p>
-<p><%= @countnoStatus%></p>
-<p>Tesis con estado calificado</p>
-<p><%= @statuscalificado%></p>
-<p>Tesis con estado calificando</p>
-<p><%= @statuscalificando%></p>
-<p>Tesis con estado sin calificar</p>
-<p><%= @statussincalificar%></p>
-<p></p>
-<%= grading_count %>
+          <p>Tesis sin asignar estado</p>
+          <p><%= @countnoStatus%></p>
+          <p>Tesis con estado calificado</p>
+          <p><%= @statuscalificado%></p>
+          <p>Tesis con estado calificando</p>
+          <p><%= @statuscalificando%></p>
+          <p>Tesis con estado sin calificar</p>
+          <p><%= @statussincalificar%></p>
+          <p></p>
+        </div>
+      </div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <hr style="color: #0056b2;" />
+      <span></span>
+      <div class = row>
+        <div>
+        <h3>3.Jurados con tesis asignadas </h3>
+        </div>
+          <div class="col-xs-12 col-sm-4 col-md-4">
+            <table>
+              <thead>
+									<tr>
+											<th>Jurado</th>
+											<th>No. Tesis</th>
+									</tr>
+							</thead>
+              <tbody>
+                <% @jurados.each do |j|%>
+                <tr>
+								<td><%= j %></td>
+                <td><%=%></td>
+              </tr>
+                <%end%>
+							</tbody>
+            </table>
+            <!--<p>grad juries</p>-->
+          </div>
+          <div  class="col-xs-12 col-sm-8 col-md-8">
+            <%= juries_counts %>
+          </div>
 
-  <tbody>
-    <% @charts.each do |chart| %>
-      <tr>
-        <td><%= link_to 'Show', chart %></td>
-        <td><%= link_to 'Edit', edit_chart_path(chart) %></td>
-        <td><%= link_to 'Destroy', chart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <div class = row>
+          </div><div >
+            <%= tesisjur_count %>
+          </div>
+        </div>
+      </div>
+<span></span>
+      <hr style="color: #0056b2;" />
+      <span></span>
+      <div class = row>
+        <div>
+        <h3>4.Tesis creadas en el tiempo</h3>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8">
+          <%= dategrade_count %>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <p>Total de Tesis creadas</p>
+          <p><%= @dategrade1 + @dategrade2%></p>
 
-<br>
+          <!--<p>Todas las fechas</p>
+          <p><%= @cualquiera%></p>-->
+        </div>
+        <div>
 
-<%= juries_counts %>
+        </div>
+      </div>
+
+
 <%= link_to 'New Chart', new_chart_path %>
-
-
-
 
     </div>
 </div>
