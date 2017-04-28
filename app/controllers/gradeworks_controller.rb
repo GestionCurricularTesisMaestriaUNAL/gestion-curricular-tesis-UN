@@ -1,4 +1,6 @@
 class GradeworksController < ApplicationController
+
+  skip_before_filter :verify_authenticity_token
   before_action :set_gradework, only: [:show, :edit, :update, :destroy]
 
   # GET /gradeworks
@@ -55,8 +57,24 @@ class GradeworksController < ApplicationController
     @gradework.users << User.find(directors)
     end
 
+    p params.has_key?(:files_list)
+    p  params[:files_list]
+
     respond_to do |format|
       if @gradework.save!
+
+        # if params.has_key?(:files_list)
+        #   files_list = ActiveSupport::JSON.decode(params[:files_list])
+        #   # product=Product.create(name: params[:name], description: params[:description])
+        #   Dir.mkdir("#{Rails.root}/public/uploads/gradework/file/"+ @gradework.id.to_s)
+        #   files_list.each do |pic|
+        #     p pic
+        #     path = "#{Rails.root}/public/uploads/gradework/file/"+ @gradework.id.to_s+'/'
+        #     File.rename( "#{Rails.root}/"+pic, path + File.basename(pic))
+        #     FileGradework.create(gradework_id: @gradework.id,name: File.basename(pic), description: MIME::Types.type_for(path), path: path )
+        #   end
+        # end
+
         format.html { redirect_to @gradework, notice: 'La tesis se creó correctamente' }
         format.json { render :show, status: :created, location: @gradework }
       else
@@ -99,6 +117,18 @@ class GradeworksController < ApplicationController
     end
   end
 
+  def download
+
+    id = params[:id]
+    file = FileGradework.find(id)
+    #file = @file
+    send_file(
+        file.path + file.name,
+        filename: file.name,
+        type: ""
+    )
+  end
+
   # DELETE /gradeworks/1
   # DELETE /gradeworks/1.json
   def destroy
@@ -109,6 +139,21 @@ class GradeworksController < ApplicationController
     end
   end
 
+  def upload
+    uploaded_pics = params[:file]
+    time_footprint = Time.now.to_i.to_formatted_s(:number)
+	#abort uploaded_pics.inspect
+    uploaded_pics.each do |index,pic|
+      File.open(Rails.root.join('public', 'uploads', pic.original_filename), 'wb') do |file|
+        file.write(pic.read)
+        File.rename(file, 'public/uploads/tmp/' + time_footprint + pic.original_filename)
+      end
+    end
+    #files_list = Dir.entries('public/uploads/tmp/').to_json
+    files_list = Dir["public/uploads/tmp/*"].to_json
+    render json: { message: 'You have successfully uploded your images.', files_list: files_list }
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_gradework

@@ -44,4 +44,10 @@ function openItem(evt, itemName) {
     //document.getElementById("defaultOpen").click();
 }
 
+function link_to_index(){
+	
+	location.href="/jurys/index"
+	// document.getElementsById(idGr).value = document.getElementsById(idG).value
+}
+
 document.getElementById("defaultOpen").click();

@@ -14,13 +14,11 @@
     <%= stylesheet_link_tag "layout/phone", media: "all" %>
     <%= stylesheet_link_tag "layout/small", media: "all" %>
     <%= stylesheet_link_tag "layout/printer", media: "all" %>
+    <%= csrf_meta_tags %>
 
     <%= yield :head %>
     
     <%= javascript_include_tag 'application' %>
-
-    <%= csrf_meta_tags %>
-
   </head>
 
   <body>
@@ -29,5 +27,6 @@
     <%= yield %>
     <%= render "layouts/unal/footer" %>
     <%= yield :bottom %>
+    <%= yield(:javascript) %><!-- We put our JavaScript tags here -->
   </body>
 </html>

@@ -83,9 +83,29 @@
         <br>
 
         <p>
-          <strong class="margin-field-show">Archivo:</strong>
-          <%= @gradework.file_identifier %>
-          <%= link_to('Open', @gradework.file.url) if @gradework.file?%>
+          <strong class="margin-field-show">Archivos:</strong>
+        <table>
+          <thead>
+          <tr>
+            <th class="table-head">Nombre</th>
+            <th class="table-head">Descripcion</th>
+            <th class="table-head">path</th>
+
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @gradework.filegradeworks.each do |file| %>
+              <tr>
+
+                <td>
+                <%= link_to file.name, :controller => "gradeworks", :action => "download", :id => file %>
+                </td>
+
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
 
         </p>
 

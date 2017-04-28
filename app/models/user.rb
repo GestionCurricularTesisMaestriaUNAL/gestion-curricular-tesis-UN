@@ -114,5 +114,6 @@ class User < ApplicationRecord
     .where({ gradeworks: { status: "calificando" } })
   end
 
+  
 
 end
