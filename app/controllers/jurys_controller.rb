@@ -4,7 +4,9 @@ class JurysController < ApplicationController
     @gradeworks = Gradework.all
     @gradework = Gradework.new
     @feedbacks = Feedback.all
-    @grad_jury = @gradework.users.joins(:roles).where(roles: {name: "Jury"})
+    #@jury_id = Gradework.users_jury_id() 
+    @grad_jury = Gradework.users_gradework(101)#El paremtro es el id del usuario actual.....
+
 
   end
 

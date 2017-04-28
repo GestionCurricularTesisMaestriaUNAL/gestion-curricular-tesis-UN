@@ -67,6 +67,12 @@ class Gradework < ApplicationRecord
 	.where(roles: {name: "Jury"})
   end
 
+  def self.users_gradework(idU)
+    joins(:users).select("gradeworks.id,gradeworks.name,gradeworks.description")
+    .where({ users: { id: idU } })
+  end
+
+  
 
   #CarrierWave
   mount_uploader :file, FileUploader
