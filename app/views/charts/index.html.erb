@@ -51,4 +51,6 @@
 <br>
 
 <%= link_to 'New Chart', new_chart_path %>
-<%= bar_chart @countJury %>
+<%= pie_chart({"Users" => @users.count, "Roles" => @rolesCreados}) %>
+
+<%= bar_chart({"Jurados" => @countJury, "Estudiantes" => @countStudent, "Profesores" => @countTeacher, "Administradores" => @countAdmin, "Roles Creados" => @rolesCreados, "Usuarios MultiRol" => (@rolesCreados - @totalnuser.number)}) %>
