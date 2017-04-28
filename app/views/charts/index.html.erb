@@ -36,7 +36,7 @@
 <p><%= @totalnuser.number - @countnoRol%></p>
 <p>Usuarios con mas de un rol:</p>
 <p><%= @rolesCreados - @totalnuser.number %></p>
-
+<p></p>
 <p>Jurados:</p>
 <p><%= @countJury%></p>
 <p>Estudiantes</p>
@@ -45,6 +45,23 @@
 <p><%= @countTeacher%></p>
 <p>Administradores</p>
 <p><%= @countAdmin%></p>
+<%= bar_chart({"Jurados" => @countJury, "Estudiantes" => @countStudent, "Profesores" => @countTeacher, "Administradores" => @countAdmin, "Usuarios MultiRol" => (@rolesCreados - @totalnuser.number)}) %>
+
+
+<p></p>
+<p>Numero de tesis creadas</p>
+<p><%= @totalgradeworks%></p>
+
+<p>Tesis sin asignar estado</p>
+<p><%= @countnoStatus%></p>
+<p>Tesis con estado calificado</p>
+<p><%= @statuscalificado%></p>
+<p>Tesis con estado calificando</p>
+<p><%= @statuscalificando%></p>
+<p>Tesis con estado sin calificar</p>
+<p><%= @statussincalificar%></p>
+<p></p>
+<%= bar_chart({"Sin asignar estado" => @countnoStatus, "Calificado" => @statuscalificado, "Calificando" => @statuscalificando, "Sin calificar" => @statussincalificar}) %>
 
 <table>
   <thead>
@@ -69,7 +86,7 @@
 <%= link_to 'New Chart', new_chart_path %>
 <%= pie_chart({"Users" => @users.count, "Roles" => @rolesCreados}) %>
 
-<%= bar_chart({"Jurados" => @countJury, "Estudiantes" => @countStudent, "Profesores" => @countTeacher, "Administradores" => @countAdmin, "Usuarios MultiRol" => (@rolesCreados - @totalnuser.number)}) %>
+
 
 <%= users_count %>
 

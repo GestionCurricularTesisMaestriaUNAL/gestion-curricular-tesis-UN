@@ -8,6 +8,7 @@ class ChartsController < ApplicationController
     @charts= Chart.all.extend(DescriptiveStatistics)
     @totalnuser = User.all.extend(DescriptiveStatistics)
 
+    statusgrade
     countUsers
   end
 
@@ -44,6 +45,77 @@ class ChartsController < ApplicationController
     @rolesCreados = @countAdmin+@countTeacher+@countStudent+@countJury
   end
 
+def statusgrade
+  @gradeworks = Gradework.all
+  @estgradework = Gradework.all.extend(DescriptiveStatistics)
+  @totalgradeworks = @estgradework.number
+  @countnoStatus = 0
+  @statuscalificado = 0
+  @statuscalificando = 0
+  @statussincalificar = 0
+
+  @gradeworks.each do |gradework|
+    if gradework.status == "form-gradework"
+      @countnoStatus += 1
+    else
+      if gradework.status == "calificado"
+        @statuscalificado += 1
+      end
+      if gradework.status == "calificando"
+        @statuscalificando += 1
+      end
+      if gradework.status == "sin calificar"
+        @statussincalificar += 1
+      end
+    end
+  end
+end
+
+
+# GET /charts/1
+# GET /charts/1.json
+def show
+end
+
+# GET /charts/new
+def new
+  @chart = Chart.new
+  @users = User.all
+end
+
+# GET /charts/1/edit
+def edit
+end
+
+# POST /charts
+# POST /charts.json
+def create
+  @chart = Chart.new(chart_params)
+
+  respond_to do |format|
+    if @chart.save
+      format.html { redirect_to @chart, notice: 'Chart was successfully created.' }
+      format.json { render :show, status: :created, location: @chart }
+    else
+      format.html { render :new }
+      format.json { render json: @chart.errors, status: :unprocessable_entity }
+    end
+  end
+end
+
+# PATCH/PUT /charts/1
+# PATCH/PUT /charts/1.json
+def update
+  respond_to do |format|
+    if @chart.update(chart_params)
+      format.html { redirect_to @chart, notice: 'Chart was successfully updated.' }
+      format.json { render :show, status: :ok, location: @chart }
+    else
+      format.html { render :edit }
+      format.json { render json: @chart.errors, status: :unprocessable_entity }
+    end
+  end
+end
 
   # GET /charts/1
   # GET /charts/1.json
