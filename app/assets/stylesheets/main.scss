@@ -89,7 +89,7 @@ h3 {
 }
 
 .main-container {
-    max-width: 1280px;
+    width: 1280px;
     margin-top: 60px;
     margin-bottom: 60px;
     margin-left: auto;
@@ -128,6 +128,98 @@ h3 {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%);
     border: 2px solid;
+}
+
+.assigned-gradework{
+    width: 275px;
+    padding: 30px;
+    margin-left: 100px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    height: 250px;
+    box-shadow: 5px 5px 5px #b9b6b6;
+    display: inline-block;
+}
+
+.gradework-info{
+    text-align: center;
+}
+
+.gradework-text{
+    font-size: 20px;
+    margin-top: 25px;
+}
+
+.gradework-more-info-btn{
+    margin-top: 40px;
+}
+/////
+
+/* Style the buttons inside the tab */
+.tablinks {
+    background-color: inherit;
+    float: left;
+    border-bottom: solid 1px lightgray;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tablinks :hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tablinks.active {
+    background-color: #E5E5E5;
+
+}
+
+.panel.panel-default{
+	display: none;
+	margin-top: -10px;
+    box-shadow: 5px 5px 5px #b9b6b6;
+}
+
+.panel-heading{
+	display: none;
+}
+
+.panel-title{
+	display: none;
+	font-size: 25px;
+}
+
+.panel-body{
+	display: none;
+}
+
+.relleno{
+	margin-top: -10px;
+	margin-bottom: 15px;
+	background-color: #f1f1f1;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    box-shadow: 5px 5px 5px #b9b6b6;
+}
+
+.Dtab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 239px;
+    margin-bottom: 10px;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 325px;
+    margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 992px) {

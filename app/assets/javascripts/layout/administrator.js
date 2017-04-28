@@ -12,3 +12,6 @@ function link_to_charts(){
 
 	location.href="http://localhost:3000/charts"
 }
+
+	location.href="/users"
+}
