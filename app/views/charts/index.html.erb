@@ -30,6 +30,12 @@
     <% end %> </p>
 <% end %>
 -->
+<p>Usuarios sin rol</p>
+<p><%= @countnoRol%></p>
+<p>Usuarios con rol asignado</p>
+<p><%= @totalnuser.number - @countnoRol%></p>
+<p>Usuarios con mas de un rol:</p>
+<p><%= @rolesCreados - @totalnuser.number %></p>
 
 <p>Jurados:</p>
 <p><%= @countJury%></p>
@@ -39,10 +45,6 @@
 <p><%= @countTeacher%></p>
 <p>Administradores</p>
 <p><%= @countAdmin%></p>
-<p>Roles creados</p>
-<p><%= @rolesCreados%></p>
-<p>Usuarios con mas de un rol:</p>
-<p><%= @rolesCreados - @totalnuser.number%></p>
 
 <table>
   <thead>

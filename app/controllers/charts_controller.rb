@@ -15,12 +15,16 @@ class ChartsController < ApplicationController
     @users = User.all
     @roles = Role.all
     @countJury = 0
+    @countnoRol = 0
     @countStudent = 0
     @countTeacher = 0
     @countAdmin = 0
     @rolesCreados = 0
 
     @users.each do |user|
+      if !user.roles.present?
+        @countnoRol += 1
+      else
       user.roles.each do |role|
         if role.name == "Jury"
           @countJury += 1
@@ -36,6 +40,7 @@ class ChartsController < ApplicationController
         end
       end
     end
+  end
     @rolesCreados = @countAdmin+@countTeacher+@countStudent+@countJury
   end
 
