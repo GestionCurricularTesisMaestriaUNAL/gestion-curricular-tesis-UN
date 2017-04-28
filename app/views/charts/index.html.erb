@@ -1,7 +1,8 @@
+<%= javascript_include_tag "https://code.highcharts.com/highcharts.src.js", "chartkick" %>
 <p id="notice"><%= notice %></p>
 
 <h1>Charts</h1>
-<p></p>
+<p></p>Error Loading Chart: No adapter found
 <p></p>
 <p> Numero de usuarios:</p>
 <p>  <%= @totalnuser.number %></p>
@@ -50,3 +51,4 @@
 <br>
 
 <%= link_to 'New Chart', new_chart_path %>
+<%= bar_chart @countJury %>

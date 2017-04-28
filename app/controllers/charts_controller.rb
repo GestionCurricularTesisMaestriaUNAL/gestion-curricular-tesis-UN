@@ -10,6 +10,7 @@ class ChartsController < ApplicationController
 
     countUsers
   end
+
   def countUsers
     @users = User.all
     @roles = Role.all
@@ -47,6 +48,7 @@ class ChartsController < ApplicationController
   # GET /charts/new
   def new
     @chart = Chart.new
+    @users = User.all
   end
 
   # GET /charts/1/edit
