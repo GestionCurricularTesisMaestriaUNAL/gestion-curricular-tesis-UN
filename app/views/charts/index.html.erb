@@ -15,7 +15,8 @@
     </div>
     <div class="container">
 
-
+<div>
+<div class="pull-right">
 <p id="notice"><%= notice %></p>
 <p></p>
 <p> Numero de usuarios:</p>
@@ -45,8 +46,11 @@
 <p><%= @countTeacher%></p>
 <p>Administradores</p>
 <p><%= @countAdmin%></p>
-<%= bar_chart({"Jurados" => @countJury, "Estudiantes" => @countStudent, "Profesores" => @countTeacher, "Administradores" => @countAdmin, "Usuarios MultiRol" => (@rolesCreados - @totalnuser.number)}) %>
-
+</div>
+<div class="pull-left"
+<%= users_count %>
+</div>
+</div>
 
 <p></p>
 <p>Numero de tesis creadas</p>
@@ -61,7 +65,7 @@
 <p>Tesis con estado sin calificar</p>
 <p><%= @statussincalificar%></p>
 <p></p>
-<%= bar_chart({"Sin asignar estado" => @countnoStatus, "Calificado" => @statuscalificado, "Calificando" => @statuscalificando, "Sin calificar" => @statussincalificar}) %>
+<%= grading_count %>
 
 <table>
   <thead>
@@ -83,12 +87,11 @@
 
 <br>
 
+<%= juries_counts %>
 <%= link_to 'New Chart', new_chart_path %>
-<%= pie_chart({"Users" => @users.count, "Roles" => @rolesCreados}) %>
 
 
 
-<%= users_count %>
 
     </div>
 </div>
