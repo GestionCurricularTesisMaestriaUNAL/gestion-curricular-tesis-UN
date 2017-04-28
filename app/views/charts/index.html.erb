@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Charts</h1>
+<p></p>
+<p></p>
+<p> Numero de usuarios:</p>
+<p>  <%= @totalnuser.number %></p>
+<!--<% @users.each do |user| %>
+  <p>  <% user.roles.each do |role| %>
+    <div>
+      <%if role.name%>
+      <%= role.name %>
+      <%end%>
+    </div>
+    <% end %> </p>
+<% end %>
+-->
+
+<p>Jurados:</p>
+<p><%= @countJury%></p>
+<p>Estudiantes</p>
+<p><%= @countStudent%></p>
+<p>Profesores</p>
+<p><%= @countTeacher%></p>
+<p>Administradores</p>
+<p><%= @countAdmin%></p>
+<p>Roles creados</p>
+<p><%= @rolesCreados%></p>
+<p>Usuarios con mas de un rol:</p>
+<p><%= @rolesCreados - @totalnuser.number%></p>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @charts.each do |chart| %>
+      <tr>
+        <td><%= link_to 'Show', chart %></td>
+        <td><%= link_to 'Edit', edit_chart_path(chart) %></td>
+        <td><%= link_to 'Destroy', chart, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Chart', new_chart_path %>

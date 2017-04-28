@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  
+
   get 'administrator/home'
 
   get 'students/index'
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :roles
   resources :users
   resources :gradeworks
+  resources :charts
 
   get 'contact_us/index'
   get 'home/index'

@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave', '~> 0.10.0'
+gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

@@ -74,6 +74,7 @@ GEM
     delayed_job_active_record (4.1.1)
       activerecord (>= 3.0, < 5.1)
       delayed_job (>= 3.0, < 5)
+    descriptive_statistics (2.4.0)
     diff-lcs (1.3)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -227,6 +228,7 @@ DEPENDENCIES
   carrierwave (~> 0.10.0)
   coffee-rails (~> 4.2)
   delayed_job_active_record
+  descriptive_statistics (~> 2.4.0)
   faker
   figaro
   font-awesome-rails
