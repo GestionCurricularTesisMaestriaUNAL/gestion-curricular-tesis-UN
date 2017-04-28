@@ -36,12 +36,14 @@
 							
 							<div class="form-group">
 								<label for="editDoc">Descripción:</label><br>
-								Descripción
+								<%=gradework.description%>
 							</div>	
+							
+							<!-- <input type="hidden" id="idG" name="idGra" value=<%=gradework.id%>></input> -->
 							
 							</form>		
 							
-							<button type="button" class="btn btn-default">Ver mas</button>	
+							<button type="button" class="btn btn-default" onclick="link_to_indexD()">Ver mas</button>	
 							
 						</div>
 						

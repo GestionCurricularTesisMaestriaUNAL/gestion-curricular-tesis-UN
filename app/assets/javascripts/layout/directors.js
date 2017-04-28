@@ -44,4 +44,10 @@ function openItem(evt, itemName) {
     //document.getElementById("defaultOpen").click();
 }
 
+function link_to_indexD(){
+	
+	location.href="/directors/index"
+	// document.getElementsById(idGr).value = document.getElementsById(idG).value
+}
+
 document.getElementById("defaultOpen").click();
