@@ -36,6 +36,33 @@ class User < ApplicationRecord
     "#{firstname}  #{lastname}"
   end
 
+  #
+  # def admin
+  #   roles = self.roles
+  #   value = false
+  #   for roles.each do |role|
+  #       if role.name == "Administrator"
+  #         value = true
+  #       end
+  #   end
+  #   value
+  # end
+
+  def jury
+    joins(:roles).select()
+        .where({ roles: { name: "Jury" } })
+  end
+
+  def director
+    joins(:roles).select()
+        .where({ roles: { name: "Director" } })
+  end
+
+  def student
+    joins(:roles).select()
+        .where({ roles: { name: "Student" } })
+  end
+
   def self.users_by_id(id)
     find_by_id(id)
   end

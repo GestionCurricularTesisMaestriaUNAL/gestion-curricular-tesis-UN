@@ -1,4 +1,43 @@
 class HomeController < ApplicationController
-  def index
-  end
+
+    def home
+
+      user = current_user
+      #us = User.find(user.id)
+      p user.roles
+      case
+        when user.roles.where({ roles: { name: "Student" } }).any?
+          student_home
+        when user.roles.where({ roles: { name: "Administrator" } }).any?
+          admin_home
+        when user.roles.where({ roles: { name: "Director" } }).any?
+          admin_home
+        when user.roles.where({ roles: { name: "Jury" } }).any?
+          jury_home
+        else
+          # Unknown user type? Render error or use a default.
+      end
+    end
+
+    protected
+    def jury_home
+      # ...
+      render '/jurys/home'
+    end
+
+    def student_home
+      # ...
+      render '/students/index'
+    end
+
+    def director_home
+      # ...
+      render '/directors/index'
+    end
+
+    def admin_home
+      # ...
+      render '/administrator/home'
+    end
+
 end
