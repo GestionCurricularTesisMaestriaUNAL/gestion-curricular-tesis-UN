@@ -1,0 +1,5 @@
+<div class="user-panel-container">
+    <div class="username-panel">Bienvenido: <%= current_user.firstname %> |</div>
+    <!--<a class="logout-user">Salir</a>-->
+    <%= link_to('Salir', destroy_user_session_path, :method => :delete, class: "logout-user") %>
+</div>

@@ -4,14 +4,14 @@
 
 <% end %>
 <div class="main-container">
+	<%= render partial: "partials/user_panel" %>
     <div class="container-header">
         <h1>Administración de usuarios</h1>
     </div>
-	<%= link_to('Logout', destroy_user_session_path, :method => :delete) %> 
     <div class="container">
         <div class="row">
 					<div class="col-md-6" style="overflow: scroll;">
-						<table id="usersTable" class="display" cellspacing="0" width="100%">
+						<table id="usersTable" class="display table-responsive" cellspacing="0" width="100%">
 							<thead>
 									<tr>
 											<th>Nombre</th>

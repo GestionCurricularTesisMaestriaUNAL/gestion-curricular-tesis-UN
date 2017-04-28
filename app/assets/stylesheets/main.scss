@@ -130,6 +130,28 @@ h3 {
     border: 2px solid;
 }
 
+.user-panel-container{
+	margin: 0 auto;
+	max-width: 350px;
+	text-align: center;
+	margin-top: -30px;
+	font-size: 20px;
+	background-color: #efebeb;
+	padding: 10px;
+	margin-bottom: 20px;
+	border-bottom: gray solid 4px;
+	-webkit-clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+	clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+}
+
+.username-panel{
+	display: inline-block;
+}
+
+.logout-user{
+	display: inline-block;
+}
+
 @media only screen and (max-width: 992px) {
     /* media: */
     .DIV_LOG{
@@ -143,5 +165,21 @@ h3 {
     .DIV_LOG{
       margin: 0 auto;
       float: none;
+    }
+
+    .main-container {
+        max-width: 100%;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        background-color: white;
+        border-top: 2px solid gray;
+        border-bottom: 2px solid gray;
+        -webkit-box-shadow: 0px -4px 3px rgba(175, 175, 175, 0.75);
+        -moz-box-shadow:    0px -4px 3px rgba(175, 175, 175, 0.75);
+        box-shadow:         0px -4px 3px rgba(175, 175, 175, 0.75);
     }
 }
