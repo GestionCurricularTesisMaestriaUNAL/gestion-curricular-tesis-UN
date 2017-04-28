@@ -1,6 +1,6 @@
 module ChartsHelper
   def users_count
-    bar_chart @users.group().count, height: '500px', library: {
+    bar_chart @users.group(:firstname).count, height: '300px', library: {
       title: {text: 'Usuarios creados', x: -20},
       yAxis: {
          allowDecimals: false,
