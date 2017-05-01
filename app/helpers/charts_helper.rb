@@ -98,7 +98,7 @@ def userspie_counts
     }
   end
   def dategrade_count
-    bar_chart ({"01-04-2017 - 15-04-2017" => @dategrade1, "16-04-2017 - 27-04-2017" => @dategrade2} ) , height: '300px', width:'70%', library: {
+    bar_chart ({"01-04-2017 - 15-04-2017" => @dategrade1, "16-04-2017 - 28-04-2017" => @dategrade2} ) , height: '300px', width:'70%', library: {
       title: {text: 'Tesis creadas en el tiempo', x: 0},
       yAxis: {
          allowDecimals: false,

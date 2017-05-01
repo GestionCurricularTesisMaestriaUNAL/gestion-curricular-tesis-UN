@@ -93,7 +93,7 @@ def dategrade
       if gradework.created_at <= "2017-04-15" && gradework.created_at > "2017-04-01"
         @dategrade1 += 1
       end
-      if gradework.created_at <= "2017-04-27" && gradework.created_at > "2017-04-16"
+      if gradework.created_at <= "2017-04-28" && gradework.created_at > "2017-04-16"
         @dategrade2 += 1
       end
     end
