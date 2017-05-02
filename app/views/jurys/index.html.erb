@@ -53,21 +53,22 @@
 				  <div id="comentarios3" class="panel-body">
 				  	<div class=scroll>
 
-				  	<% @feedbacks.each do |feed| %>	
+				  	
+				  	<%# <% @feedbacks.each do |feed| -%>
 
 					  	<div class="uno">
 					  		<div class="jury">
 					  			Pepito Perez	
 					  		</div>
 					  		<div class="comment">	
-					  			<%= feed.anotations %>
+					  			Holaaaaa<%#feed.anotations %>
 					  		</div>
 					  		<div class="fecha">
 					  			10/04/2017
 					  		</div>
 					  	</div>
 
-					  	<% end %>
+					  	<%# end %> 
 
 					  	
 
@@ -91,23 +92,34 @@
 						        </div>
 						        <div class="modal-body">
 						        	
-						        	<form role="form" id="newForm" action="feedbacks" method="post">					
-						        	<div class="form-group">		  
-									  Comentario:<br>
-									  <textarea form="feedback/create" type="text" name="descripcion"rows="5" class="form-control"
-                      					id="inputAnotations" placeholder="Ingrese su comentario" 
-                     					 name="feedback[anotations]" required></textarea>
-									  <br><br>
-									</div>
+							        <form role="form" id="newForm" action="/feedbacks" method="post">
 
-									<div class="form-group">
-							            <label for="gradeworks">Tesis:</label>
-							            <%= select_tag(:gradeworks, options_from_collection_for_select(@grad_jury ,:id, :name), :prompt => "Ninguno", class: "form-control") %>
-							        </div>
-							        
-									  <br><br>
-									  <button type="submit" class="btn btn-default" data-dismiss="modal">Agregar</button>
-									  <!-- <input type="submit" value="Agregar"> -->
+								        	<div class="form-group">		  
+											  Comentario:<br>
+											  <textarea  type="text" rows="5" class="form-control"
+		                      					id="inputAnotations" placeholder="Ingrese su comentario" 
+		                     					 name="feedback[anotations]" required></textarea>
+											  <br><br>
+											</div>
+
+											<div class="form-group">
+									             Score:<br>
+									             <input type="number" class="form-control" name="feedback[score]">
+									        </div>
+
+											<div class="form-group">
+									            <label for="gradework">Tesis:</label>
+									     <%= select_tag(:gradework, options_from_collection_for_select(@grad_jury ,:id, :name), :prompt => "Ninguno", class: "form-control", name: "feedback[gradework]") %>
+									        </div>
+
+									        <div class="form-group">
+									             <%#User:<br>%>
+									             <input type="hidden" class="form-control" name="feedback[user]" value= <%= @cUser %>>
+									        </div>
+								        
+											  <br><br>
+											  <button type="submit" class="btn btn-default" data-dismiss="">Agregar</button>
+										  <!-- <input type="submit" value="Agregar"> -->
 									</form> 
 						        </div>
 						        <div class="modal-footer">

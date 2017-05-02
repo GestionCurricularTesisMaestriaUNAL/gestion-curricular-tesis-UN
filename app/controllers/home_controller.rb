@@ -1,7 +1,8 @@
 class HomeController < ApplicationController
 
     def home
-
+      @grad_jury = Gradework.users_gradework(current_user.id)
+      @cUser = current_user
       user = current_user
       #us = User.find(user.id)
       p user.roles
@@ -13,16 +14,17 @@ class HomeController < ApplicationController
         when user.roles.where({ roles: { name: "Director" } }).any?
           admin_home
         when user.roles.where({ roles: { name: "Jury" } }).any?
-          jury_home
+          jury_index
         else
           # Unknown user type? Render error or use a default.
       end
     end
 
     protected
-    def jury_home
+    def jury_index
       # ...
-      render '/jurys/home'
+      render '/jurys/index'
+      @grad_jury = Gradework.users_gradework(101)
     end
 
     def student_home

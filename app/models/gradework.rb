@@ -67,9 +67,9 @@ class Gradework < ApplicationRecord
 	.where(roles: {name: "Jury"})
   end
 
-  def self.users_gradework(idU)
+   def self.users_gradework(id)
     joins(:users).select("gradeworks.id,gradeworks.name,gradeworks.description")
-    .where({ users: { id: idU } })
+    .where({ users: { id: id } })
   end
 
   

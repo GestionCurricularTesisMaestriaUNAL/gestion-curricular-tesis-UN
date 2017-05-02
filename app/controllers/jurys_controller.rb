@@ -1,5 +1,5 @@
 class JurysController < ApplicationController
-  
+  skip_before_filter :verify_authenticity_token
   def index
     #El 101 que se pasa como parametro es el id del user, puse 101 porque fue uno que cree manualmente.
     @gradeworks = Gradework.users_gradework(101)

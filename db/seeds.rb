@@ -31,28 +31,28 @@ status = ['sin calificar','calificando','calificado']
 roles = ['Student', 'Administrator', 'Jury', 'Director']
 
 
-#4.times do |index|
-#  Role.create!(name: roles[index],
-#               description: roles[index]
-#  )
-#end
+4.times do |index|
+  Role.create!(name: roles[index],
+               description: roles[index]
+  )
+end
 
 #p "Created #{Role.count} Roles"
 
- 100.times do |index|
-   User.create!(
-                 username: Faker::Name.first_name,
-                 firstname: Faker::Name.first_name,
-                 lastname: Faker::Name.last_name,
-                 email: Faker::Internet.free_email,
-                 phone: Faker::Number.number(7),
-                 identification: Faker::Number.number(7),
-                 password: '123456'
-   )
+ # 100.times do |index|
+ #   User.create!(
+ #                 username: Faker::Name.first_name,
+ #                 firstname: Faker::Name.first_name,
+ #                 lastname: Faker::Name.last_name,
+ #                 email: Faker::Internet.free_email,
+ #                 phone: Faker::Number.number(7),
+ #                 identification: Faker::Number.number(7),
+ #                 password: '123456'
+ #   )
 
- end
+ # end
 
- p "Created #{User.count} Users"
+ # p "Created #{User.count} Users"
 #
 #
 #
