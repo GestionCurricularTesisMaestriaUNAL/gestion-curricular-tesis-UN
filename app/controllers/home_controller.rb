@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
     def home
       @grad_jury = Gradework.users_gradework(current_user.id)
-      @cUser = current_user
+      @cUser = current_user.id
       user = current_user
       #us = User.find(user.id)
       p user.roles

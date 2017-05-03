@@ -109,12 +109,12 @@
 
 											<div class="form-group">
 									            <label for="gradework">Tesis:</label>
-									     <%= select_tag(:gradework, options_from_collection_for_select(@grad_jury ,:id, :name), :prompt => "Ninguno", class: "form-control", name: "feedback[gradework]") %>
+									     <%= select_tag(:gradework, options_from_collection_for_select(@grad_jury ,:id, :name), :prompt => "Ninguno", class: "form-control", name: "feedback[gradework_id]") %>
 									        </div>
 
 									        <div class="form-group">
 									             <%#User:<br>%>
-									             <input type="hidden" class="form-control" name="feedback[user]" value= <%= @cUser %>>
+									             <input type="hidden" class="form-control" name="feedback[user_id]" value= <%= @cUser %>>
 									        </div>
 								        
 											  <br><br>
