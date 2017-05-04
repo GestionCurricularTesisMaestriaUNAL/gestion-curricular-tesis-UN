@@ -28,8 +28,8 @@
                   <tr>
                     <td><%= feedback.anotations %></td>
                     <td><%= feedback.score %></td>
-                    <td><%= feedback.gradework.name %></td>
-                    <td><%= feedback.user.full_name %></td>
+                    <td><%= feedback.gradework_id %></td>
+                    <td><%= feedback.user_id %></td>
                     <td><%= link_to 'Ver', feedback %></td>
                     <td><%= link_to 'Editar', edit_feedback_path(feedback) %></td>
                     <td><%= link_to 'Eliminar', feedback, method: :delete, data: { confirm: '¿Esta Seguro?' } %></td>
