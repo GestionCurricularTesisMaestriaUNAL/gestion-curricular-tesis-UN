@@ -25,6 +25,7 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks.json
   def create
     @feedback = Feedback.new(feedback_params)
+    #p feedback_params
 
     respond_to do |format|
       if @feedback.save!
@@ -69,6 +70,6 @@ class FeedbacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedback_params
-      params.require(:feedback).permit(:anotations, :score, :gradework, :user)
+      params.permit(:anotations, :score, :gradework_id, :user_id)
     end
 end

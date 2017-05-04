@@ -1,7 +1,7 @@
 class Feedback < ApplicationRecord
 
   belongs_to :user
-  belongs_to :gradeworks
+  belongs_to :gradework
 
   validates :score, :anotations, presence: true
   
