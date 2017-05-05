@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mail_template.name %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @mail_template.content %>
+</p>
+
+<%= link_to 'Edit', edit_mail_template_path(@mail_template) %> |
+<%= link_to 'Back', mail_templates_path %>

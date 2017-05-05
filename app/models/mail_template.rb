@@ -1,0 +1,2 @@
+class MailTemplate < ApplicationRecord
+end

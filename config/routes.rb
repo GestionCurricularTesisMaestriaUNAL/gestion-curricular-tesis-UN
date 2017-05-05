@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  resources :mail_templates
+  get 'mail_templates/index'
   get 'administrator/home'
 
   get 'students/index'
