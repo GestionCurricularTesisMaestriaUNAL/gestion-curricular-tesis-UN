@@ -2,9 +2,11 @@ class HomeController < ApplicationController
 
     def home
       
+     
+
       #p idGrade_url
       @currentgradeworks = current_user.gradeworks
-
+      @gradework_id= params[:idGrade]
       @gradeworks = Gradework.all
       user = current_user
       @grad_jury = Gradework.users_gradework(current_user.id)

@@ -12,3 +12,8 @@ function link_to_charts(){
 
 	location.href="/charts"
 }
+
+function link_to_reminders(){
+
+	location.href="/create_reminders"
+}
