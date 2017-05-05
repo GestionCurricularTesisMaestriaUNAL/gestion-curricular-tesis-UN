@@ -35,10 +35,10 @@
           <p>Nombre: <%= @gradework.name %></p>
         </div>
         <div class="tesis-text">
-          <p>Director: <%= @gradework.name %></p>
+          <p>Director: <%= @gradework.users[0].firstname %></p>
         </div>
         <div class="tesis-text">
-          <p>Jurados: <%=  @gradework.name %></p>
+          <p>Jurados: <td><%= @gradework.users[0].firstname %></td></p>
         </div>
         <div class="tesis-text">
           <p>Estado: <%= @gradework.status %></p>
@@ -92,7 +92,7 @@
 
               <div class="uno">
                 <div class="jury">
-                  Pepito Perez
+                  <%= feed.user.full_name%>
                 </div>
                 <div class="comment">
                   <%= feed.anotations%>

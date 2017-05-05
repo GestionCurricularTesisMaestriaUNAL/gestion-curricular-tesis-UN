@@ -1,13 +1,10 @@
 class HomeController < ApplicationController
 
     def home
-
-<<<<<<< Updated upstream
+      
       #p idGrade_url
       @currentgradeworks = current_user.gradeworks
-=======
-      @gradework_id= params[:idGrade]
->>>>>>> Stashed changes
+
       @gradeworks = Gradework.all
       user = current_user
       @grad_jury = Gradework.users_gradework(current_user.id)
