@@ -4,12 +4,13 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
-       user ||= User.new # guest user (not logged in)
+       #user ||= User.new # guest user (not logged in)
+      #user= current_user
 
 
 
        if user.joins(:roles).where({ roles: { name: "Jury" } }).any?
-         can :manage, Jury
+         can :manage, Gradework
        else
          can :read, :all
        end
@@ -21,13 +22,13 @@ class Ability
        end
 
        if user.joins(:roles).where({ roles: { name: "Director" } }).any?
-         can :manage, :all
+         can :manage, Gradework
        else
          can :read, :all
        end
 
        if user.joins(:roles).where({ roles: { name: "Student" } }).any?
-         can :manage, :all
+         can :manage, Gradework
        else
          can :read, :all
        end
