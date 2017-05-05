@@ -16,7 +16,7 @@
 
     <div class="relleno">
       <br><br></br></br>
-      <h1>Aqui podra revisar la información del trabajo de grado y agregar comentarios.</h1>
+      <h1>Seleccione la tesis que desea revisar.</h1>
 
     </div>
     <div id="miTesis" class="panel panel-default">
@@ -71,7 +71,7 @@
           </div><br><br>
           <div class= cent-button>
             <center>
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Nuevo Comentario</button>
+              <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Nuevo Comentario</button>
             </center>
           </div>
           <!-- Modal -->
@@ -110,16 +110,14 @@
                     <div class="form-group">
                       <%#User:<br>%>
                       <input type="hidden" class="form-control" name="user_id" value= <%= @cUser %>>
-                    </div>
-
-                    <br><br>
-                    <button type="submit" class="btn btn-default" data-dismiss="">Agregar</button>
+                    </div>                    
                     <!-- <input type="submit" value="Agregar"> -->
-                  </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-success" data-dismiss="">Agregar</button>
+                  <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
                 </div>
+                </form>
               </div>
             </div>
           </div>
