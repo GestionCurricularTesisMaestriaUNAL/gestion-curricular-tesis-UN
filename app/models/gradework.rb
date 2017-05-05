@@ -72,7 +72,7 @@ class Gradework < ApplicationRecord
     .where({ users: { id: id } })
   end
 
-  
+
 
   #CarrierWave
   mount_uploader :file, FileUploader
