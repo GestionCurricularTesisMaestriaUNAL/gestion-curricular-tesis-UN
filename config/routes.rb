@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   
+  get 'reminders/index'
+
   devise_for :users
 
   get 'administrator/home' => 'home#home'
