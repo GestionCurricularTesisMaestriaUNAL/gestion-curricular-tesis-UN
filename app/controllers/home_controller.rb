@@ -32,7 +32,7 @@ class HomeController < ApplicationController
     protected
     def jury_home
       # ...
-      render '/jurys/index'
+      render '/jurys/home'
     end
 
     def student_home
