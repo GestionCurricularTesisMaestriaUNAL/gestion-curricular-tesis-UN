@@ -6,6 +6,8 @@ class GradeworksController < ApplicationController
   # GET /gradeworks
   # GET /gradeworks.json
   def index
+    @gradeworks_id = params[:idGrade] #No Almacena nada....
+    p @gradeworks_id
     @gradeworks = Gradework.all
     @juries = User.users_jury
     @directors = User.users_director
