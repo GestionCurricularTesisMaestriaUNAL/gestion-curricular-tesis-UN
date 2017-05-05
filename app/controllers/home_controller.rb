@@ -36,12 +36,13 @@ class HomeController < ApplicationController
 
     def student_home
       # ...
+
       render '/students/index'
     end
 
     def director_home
       # ...
-      render '/directors/index'
+      render '/directors/home'
     end
 
     def admin_home

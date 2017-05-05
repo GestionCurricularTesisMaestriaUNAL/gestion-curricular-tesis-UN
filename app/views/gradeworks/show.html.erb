@@ -1,90 +1,56 @@
-<div class="container-fluid contenedorprincipal">
+<div id="page" class="container-fluid contenedorprincipal" >
   <section role="main-content">
     <div class="breadcrumb-class">
       Está en:&nbsp;
-      <a href="#" target="_self" title="Inicio"><b>Inicio</b></a>
-    </div>
+      <a href="#" target="_self" title="Inicio"><b>Inicio</b></a></div>
     <br>
-    <div class="col-md-6 col-md-offset-3 form-container-gradework">
-      <h1>Tesis</h1>
-      <p id="notice"><%= notice %></p>
-      <div class="margin-show-gradework">
-        <p>
-          <strong class="margin-field-show">Nombre:</strong>
-          <%= @gradework.name %>
-        </p>
 
-        <p>
-          <strong class="margin-field-show">Descripción:</strong>
-          <%= @gradework.description %>
-        </p>
+    <h1>Jurado</h1>
 
-        <p>
-          <strong class="margin-field-show">Estado:</strong>
-          <%= @gradework.status %>
-        </p>
+    <div class="Dtab">
+      <button class="tablinks" onclick="openItem(event, 'miTesis')" id="defaultOpen">Tesis</button>
+      <button class="tablinks" onclick="openItem(event, 'comentarios')">Comentarios</button>
+      <button class="tablinks" onclick="openItem(event, 'fechas')">Fechas</button>
+      <!-- <button class="tablinks" onclick="openItem(event, 'ayuda')">Ayuda</button> -->
+    </div>
 
-        <p>
-          <strong class="margin-field-show">Delivery date:</strong>
-          <%= @gradework.delivery_date %>
-        </p>
+    <div class="relleno">
+      <br><br></br></br>
+      <h1>Seleccione la tesis que desea revisar.</h1>
 
-        <p>
-          <strong class="margin-field-show">Begin date:</strong>
-          <%= @gradework.begin_date %>
-        </p>
-
-        <p>
-          <strong class="margin-field-show">Hora:</strong>
-          <%= @gradework.hour %>
-        </p>
-
-        <p>
-          <strong class="margin-field-show">Ubicación:</strong>
-          <%= @gradework.locale %>
-        </p>
-
-        <p>
-          <strong class="margin-field-show">Semestre:</strong>
-          <%= @gradework.semester %>
-        </p>
+    </div>
+    <div id="miTesis" class="panel panel-default">
+      <div id="miTesis1" class="panel-heading">
+        <center><h3 id="miTesis2" class="panel-title"> Tesis</h3></center>
+      </div>
+      <div id="miTesis3" class="panel-body">
 
 
-        <table>
-          <thead>
-          <tr>
-            <th class="table-head">Nombre</th>
-            <th class="table-head">Apellido</th>
-            <th class="table-head">Roles</th>
+        <!-- <input type="hidden" id="idGr" name="idGraw"></input> -->
 
-          </tr>
-          </thead>
-
-          <tbody>
-          <% @gradework.users.each do |user| %>
-          <tr>
-
-                <td><%= user.firstname %></td>
-                <td><%= user.lastname %></td>
-
-                <td>
-                  <% user.roles.each do |role| %>
-                      <ul>
-                        <%= role.name %>
-                      </ul>
-                  <% end %>
-                </td>
-          </tr>
-          <% end %>
-          </tbody>
-        </table>
+        <div class="tesis-text">
+          <p>Descripcion de la tesis: @gradework.name </p>
+        </div>
+        <div class="tesis-text">
+          <p>Nombre: <%= @gradework.name %></p>
+        </div>
+        <div class="tesis-text">
+          <p>Director: <%= @gradework.name %></p>
+        </div>
+        <div class="tesis-text">
+          <p>Jurados: <%=  @gradework.name %></p>
+        </div>
+        <div class="tesis-text">
+          <p>Estado: <%= @gradework.status %></p>
+        </div>
 
 
-        <br>
-
-        <p>
-          <strong class="margin-field-show">Archivos:</strong>
-        <table>
+        <div class="tesis-text">
+          <p>Fecha de Ingreso: <%= @gradework.begin_date %></p>
+        </div>
+        <div class="tesis-text">
+          <p>Archivos:</p>
+          <table>
           <thead>
           <tr>
             <th class="table-head">Nombre</th>
@@ -99,21 +65,112 @@
               <tr>
 
                 <td>
-                <%= link_to file.name, :controller => "gradeworks", :action => "download", :id => file %>
+                  <%= link_to file.name, :controller => "gradeworks", :action => "download", :id => file %>
                 </td>
 
               </tr>
           <% end %>
           </tbody>
-        </table>
+          </table>
+        </div>
 
-        </p>
-
-      </div>
-      <div class="text-center">
-        <%= link_to 'Editar', edit_gradework_path(@gradework) %> |
-        <%= link_to 'Atras', gradeworks_path %>
       </div>
     </div>
+
+
+
+
+    <div id="comentarios" class="panel panel-default">
+      <div id="comentarios1" class="panel-heading">
+        <center><h3 id="comentarios2" class="panel-title">Comentarios</h3></center>
+      </div>
+      <div id="comentarios3" class="panel-body">
+        <div class=scroll>
+
+
+          <% @gradework.feedbacks.each do |feed| -%>
+
+              <div class="uno">
+                <div class="jury">
+                  Pepito Perez
+                </div>
+                <div class="comment">
+                  <%= feed.anotations%>
+                </div>
+                <div class="fecha">
+                  <%= feed.created_at %>
+                </div>
+              </div>
+          <%end %>
+        </div><br><br>
+        <div class= cent-button>
+          <center>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Nuevo Comentario</button>
+          </center>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h1 class="modal-title">Nuevo Comentario</h1>
+              </div>
+              <div class="modal-body">
+
+                <form role="form" id="newForm" action="/feedbacks" method="post">
+
+                  <div class="form-group">
+                    Comentario:<br>
+                    <textarea  type="text" rows="5" class="form-control"
+                               id="inputAnotations" placeholder="Ingrese su comentario"
+                               name="anotations" required></textarea>
+                    <br><br>
+                  </div>
+
+                  <div class="form-group">
+                    Score:<br>
+                    <input type="number" class="form-control" name="score">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="hidden" class="form-control" name="gradework_id" value="<%= @gradework.id %>">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="hidden" class="form-control" name="user_id" value= "<%= current_user.id %>">
+                  </div>
+                  <!-- <input type="submit" value="Agregar"> -->
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-success" data-dismiss="">Agregar</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="fechas" class="panel panel-default">
+      <div id="fechas1" class="panel-heading">
+        <center><h3 id="fechas2" class="panel-title">Fechas</h3></center>
+      </div>
+      <div id="fechas3" class="panel-body">
+
+        <iframe id='cv_if1' src='http://cdn.instantcal.com/cvir.html?id=cv_nav1&theme=XGY&gtype=cv_monthgrid' allowTransparency='true' scrolling='no' frameborder=0 height=600 width=600></iframe>
+
+      </div>
+    </div>
+
+
+
   </section>
 </div>
+
+
