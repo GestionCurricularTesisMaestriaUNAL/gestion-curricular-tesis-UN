@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  get 'show_mails/index'
+
   resources :create_reminders
   resources :mail_templates
   resources :show_mail
