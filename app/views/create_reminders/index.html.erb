@@ -58,20 +58,29 @@
                 <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
             </div>
-          
+
             <div class="form-group">
                 <label>Seleccione a quien desea enviar el correo:</label>
                 <!-- <input type="checkbox" name="Director" value = "">Director<br>
                 <input type="checkbox" name="Jury">Jurados<br>
                 <input type="checkbox" name="Student">Estudiante<br> -->
                 <%= label_tag @directorse, 'Director'%>
-                <%= check_box_tag @grad_email_directors, 'Director', id: @directorse%>
+                <%= check_box_tag(@grad_email_directors, 'Director', checked = false, id: @directorse)%>
 
                 <%= label_tag @juriese, 'Jurado'%>
-                <%= check_box_tag @grad_email_juries, 'Jurado', id: @juriese%>
+                <%= check_box_tag(@grad_email_juries, 'Jurado', checked = false, email: @juriese)%>
 
                 <%= label_tag @studentse, 'Estudiante'%>
-                <%= check_box_tag @grad_email_students, 'Estudiante', id: @studentse%>
+                <%= check_box_tag(@grad_email_students, 'Estudiante', checked = false,  id: @studentse)%>
+            </div>
+            <div class="field">
+              <label>Estado:</label>
+              <%= text_field :state , class: 'create_reminder'%>
+            </div>
+
+            <div class="form-group">
+                <label>jurado:</label>
+                <%= select_tag(:juriese, options_from_collection_for_select( @juriese ,:id, :email, @juriese), :prompt => "Ninguno") %>
             </div>
             <input type="hidden" name="state" value="">
             <button type="submit" class="btn btn-success" onclick="new_create_reminder_path">Agregar recordatorio</button>
