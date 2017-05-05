@@ -1,0 +1,142 @@
+
+
+<% content_for :head do %>
+<%= javascript_include_tag "https://code.highcharts.com/highcharts.src.js", "chartkick" %>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+<link rel="stylesheet" type="text/css" href="/sweetalert-master/dist/sweetalert.css">
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+<% end %>
+
+<div class="main-container">
+    <div class="container-header">
+        <h1>Charts</h1>
+    </div>
+    <div class="container">
+      <p id="notice"><%= notice %></p>
+      <div class = "row">
+        <div style="margin: 20px 0 20px 0">
+          <h3>1. Asignación de roles a usuarios</h3>
+        </div>
+        <div class="col-xs-12 col-sm-3 col-md-3">
+          <p></p>
+          <p> Numero de usuarios:</p>
+          <p>  <%= @totalnuser.number %></p>
+          <p>Usuarios sin rol</p>
+          <p><%= @countnoRol%></p>
+          <p>Usuarios con rol asignado</p>
+          <p><%= @totalnuser.number - @countnoRol%></p>
+          <p>Usuarios con mas de un rol:</p>
+          <p><%= @rolesCreados - @totalnuser.number %></p>
+          <p></p>
+          <p></p>
+          <p>Jurados:</p>
+          <p><%= @countJury%></p>
+          <p>Estudiantes</p>
+          <p><%= @countStudent%></p>
+          <p>Profesores</p>
+          <p><%= @countTeacher%></p>
+          <p>Administradores</p>
+          <p><%= @countAdmin%></p>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-9">
+          <%= users_count %>
+        </div>
+      </div>
+      <div class = "row">
+      <div class = "col-xs-12 col-sm-12 col-md-12 col-centered">
+        <%= usersrolpie_counts %>
+      </div>
+      <div class = "col-xs-12 col-sm-12 col-md-12 col-centered">
+        <%= userspie_counts %>
+      </div>
+    </div>
+
+      <hr style="color: #0056b2;" />
+      <span></span>
+      <div class = "row">
+        <div style="margin: 20px 0 20px 0">
+          <h3>2. Estado de calificación de las Tesis</h3>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-9">
+          <%= grading_count %>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3">
+          <p></p>
+          <p>Numero de tesis creadas</p>
+          <p><%= @totalgradeworks%></p>
+
+          <p>Tesis sin asignar estado</p>
+          <p><%= @countnoStatus%></p>
+          <p>Tesis con estado calificado</p>
+          <p><%= @statuscalificado%></p>
+          <p>Tesis con estado calificando</p>
+          <p><%= @statuscalificando%></p>
+          <p>Tesis con estado sin calificar</p>
+          <p><%= @statussincalificar%></p>
+          <p></p>
+        </div>
+      </div>
+
+      <hr style="color: #0056b2;" />
+      <span></span>
+      <div class = "row">
+        <div style="margin: 20px 0 20px 0">
+        <h3>3.Jurados con tesis asignadas </h3>
+        </div>
+          <div class="col-xs-12 col-sm-4 col-md-4">
+            <table>
+              <thead>
+									<tr>
+											<th>Jurado</th>
+											<th>No. Tesis</th>
+									</tr>
+							</thead>
+              <tbody>
+                <% @jurados.each do |j|%>
+                <tr>
+								<td><%= j %></td>
+                <td><%=%></td>
+              </tr>
+                <%end%>
+							</tbody>
+            </table>
+            <!--<p>grad juries</p>-->
+          </div>
+          <div  class="col-xs-12 col-sm-8 col-md-8">
+            <%= juries_counts %>
+          </div>
+
+            <div class = "row">
+          </div><div >
+            <%= tesisjur_count %>
+          </div>
+        </div>
+      </div>
+<span></span>
+      <hr style="color: #0056b2;" />
+      <span></span>
+      <div class = row>
+        <div style="margin: 20px 0 20px 0">
+        <h3>4.Tesis creadas en el tiempo</h3>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-8">
+          <%= dategrade_count %>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <p>Total de Tesis creadas</p>
+          <p><%= @dategrade1 + @dategrade2%></p>
+
+          <!--<p>Todas las fechas</p>
+          <p><%= @cualquiera%></p>-->
+        </div>
+        <div>
+
+        </div>
+      </div>
+
+
+
+    </div>
+</div>

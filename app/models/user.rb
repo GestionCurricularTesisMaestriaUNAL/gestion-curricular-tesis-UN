@@ -119,7 +119,20 @@ class User < ApplicationRecord
     joins(:gradeworks).select("users.id, users.firstname")
         .where({ gradeworks: { id: id } })
   end
-
   
+  def self.users_email_jury()
+    joins(:roles).select("users.firstname, users.lastname, users.id, users.email")
+    .where({ roles: { name: "Jury" } })
+  end
+
+  def self.users_email_student()
+    joins(:roles).select("users.firstname, users.lastname, users.id, users.email")
+    .where({ roles: { name: "Student" } })
+  end
+
+  def self.users_email_director()
+    joins(:roles).select("users.firstname, users.lastname, users.id, users.email")
+    .where({ roles: { name: "Director" } })
+  end
 
 end

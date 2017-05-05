@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421043216) do
+ActiveRecord::Schema.define(version: 20170505050518) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "charts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "create_reminders", force: :cascade do |t|
+    t.string   "state"
+    t.date     "date"
+    t.time     "time"
+    t.datetime "datetime"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   default: 0, null: false
@@ -73,6 +87,13 @@ ActiveRecord::Schema.define(version: 20170421043216) do
     t.datetime "updated_at",   null: false
     t.index ["gradework_id"], name: "index_gradeworks_users_on_gradework_id", using: :btree
     t.index ["user_id"], name: "index_gradeworks_users_on_user_id", using: :btree
+  end
+
+  create_table "mail_templates", force: :cascade do |t|
+    t.string   "name"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "roles", force: :cascade do |t|

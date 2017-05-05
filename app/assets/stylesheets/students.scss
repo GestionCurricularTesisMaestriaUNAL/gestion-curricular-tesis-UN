@@ -61,67 +61,6 @@
 	width: auto;
 	padding: 20px
 }
-.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    background-color: #f1f1f1;
-    width: 324px;
-    margin-bottom: 10px;
-}
-
-/* Style the buttons inside the tab */
-.tablinks {
-    background-color: inherit;
-    float: left;
-    border: solid 1px lightgray;
-    border-radius: 10px;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-
-}
-
-/* Change background color of buttons on hover */
-.tablinks :hover {
-    background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tablinks.active {
-    background-color: #E5E5E5;
-
-}
-
-.panel.panel-default{
-	display: none;
-	margin-top: -10px;
-}
-
-.panel-heading{
-	display: none;
-}
-
-.panel-title{
-	display: none;
-	font-size: 25px;
-}
-
-.panel-body{
-	display: none;
-	border-radius: 8px;
-}
-
-.relleno{
-	height: 300px;
-	margin-top: -10px;
-	margin-bottom: 15px;
-	background-color: #f1f1f1;
-	border-radius: 8px;
-
-
-}
 
 .modal-title{
 	font-size: 40px;

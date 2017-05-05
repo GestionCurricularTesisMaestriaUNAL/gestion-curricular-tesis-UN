@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-
   
+
+  resources :create_reminders
+  resources :mail_templates
+  resources :show_mail
+
+  get 'mail_templates/index'
+  get 'administrator/home'
   get 'reminders/index'
 
   devise_for :users
@@ -20,6 +26,7 @@ Rails.application.routes.draw do
   resources :roles
   resources :users
   resources :gradeworks
+  resources :charts
 
   post 'uploadfiles'=>'gradeworks#upload'
   get 'downloadfiles'=>'gradeworks#download'
@@ -27,6 +34,7 @@ Rails.application.routes.draw do
   get 'contact_us/index'
   get 'home/index'
   #root 'administrator#home'
+  get 'charts/index'
   root 'home#home'
 
 

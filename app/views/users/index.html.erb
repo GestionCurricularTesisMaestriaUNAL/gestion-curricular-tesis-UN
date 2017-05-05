@@ -34,8 +34,8 @@
 							</tfoot>
 							<tbody>
 								<% @users.each do |user| %>
-									<tr data-id = '<%= user.id %>' data-firstname = '<%= user.firstname %>'  data-lastname = '<%= user.lastname %>'  
-									data-email = '<%= user.email %>'  data-doc = '<%= user.identification %>'  data-phone = '<%= user.phone %>' 
+									<tr data-id = '<%= user.id %>' data-firstname = '<%= user.firstname %>'  data-lastname = '<%= user.lastname %>'
+									data-email = '<%= user.email %>'  data-doc = '<%= user.identification %>'  data-phone = '<%= user.phone %>'
 									data-roles = '<% user.roles.each do |role| %> <%= role.name %>, <% end %>'  >
 									<td><%= user.firstname %></td>
 									<td><%= user.lastname %></td>
@@ -51,6 +51,8 @@
 								<% end %>
 							</tbody>
 					</table>
+          <p> number</p>
+          <p>  <%= @totaluser.number %></p>
 					</div>
 					<div class="col-md-6 text-center" style="margin-top:5%;">
 						<div class="crud-button">
@@ -69,19 +71,19 @@
 								<p class="text-button-admin" style="margin-left: auto; margin-right: auto;">Eliminar<p>
 						</div>
 					</div>
-					
+
         </div>
     </div>
 </div>
 
 <!-- Modal Nuevo Usuario-->
-<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog" 
+<div class="modal fade" id="newUserModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <button type="button" class="close" 
+                <button type="button" class="close"
                    data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
                        <span class="sr-only">Close</span>
@@ -90,10 +92,10 @@
                     Nuevo Usuario
                 </h4>
             </div>
-            
+
             <!-- Modal Body -->
             <div class="modal-body">
-                
+
                 <form role="form" id="newForm" action="users" method="post">
 					<div class="form-group">
                   	<label for="inputName">Nombre:</label>
@@ -130,7 +132,7 @@
 						</select>
 					</div>
             </div>
-            
+
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success">Crear usuario</button>
@@ -141,13 +143,13 @@
 </div>
 
 <!-- Modal Editar Usuario-->
-<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" 
+<div class="modal fade" id="editUserModal" tabindex="-1" role="dialog"
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <button type="button" class="close" 
+                <button type="button" class="close"
                    data-dismiss="modal">
                        <span aria-hidden="true">&times;</span>
                        <span class="sr-only">Close</span>
@@ -156,10 +158,10 @@
                     Editar Usuario
                 </h4>
             </div>
-            
+
             <!-- Modal Body -->
             <div class="modal-body">
-                
+
                 <form role="form" id="editForm" action="" method="post">
 									<input type="hidden" name="_method" value="put" />
 									<div class="form-group">
@@ -197,7 +199,7 @@
 						</select>
 					</div>
             </div>
-            
+
             <!-- Modal Footer -->
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success">Editar usuario</button>
@@ -263,7 +265,7 @@
 											swal("Elminado!", "El usuario ha sido eliminado", "success");
 											setTimeout(function(){
 														window.location.reload();
-											}, 1000); 
+											}, 1000);
 										});
 										}
 </script>
