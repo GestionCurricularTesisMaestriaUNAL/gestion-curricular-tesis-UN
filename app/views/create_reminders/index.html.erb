@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Create Reminders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>State</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Datetime</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @create_reminders.each do |create_reminder| %>
+      <tr>
+        <td><%= create_reminder.state %></td>
+        <td><%= create_reminder.date %></td>
+        <td><%= create_reminder.time %></td>
+        <td><%= create_reminder.datetime %></td>
+        <td><%= link_to 'Show', create_reminder %></td>
+        <td><%= link_to 'Edit', edit_create_reminder_path(create_reminder) %></td>
+        <td><%= link_to 'Destroy', create_reminder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Create Reminder', new_create_reminder_path %>
