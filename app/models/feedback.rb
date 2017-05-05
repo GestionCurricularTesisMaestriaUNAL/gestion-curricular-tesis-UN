@@ -67,5 +67,17 @@ class Feedback < ApplicationRecord
 	.where(roles: {name: "Student"})
   end
 
+  #def self.feed_user(id)
+   # includes(:user)
+    #.where({ user: { id: id } })
+  #end
+
+  def self.feedback_user(user)
+    joins(:user)
+      .where({ user: { id: user } })
+  end
+
+
+
   
 end

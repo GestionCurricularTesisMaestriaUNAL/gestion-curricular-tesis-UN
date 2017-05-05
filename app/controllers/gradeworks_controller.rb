@@ -10,6 +10,9 @@ class GradeworksController < ApplicationController
     @juries = User.users_jury
     @directors = User.users_director
     @students = User.users_student
+    @grad_jury = User.jury_gradework(1).joins(:roles).where(roles: {name: "Jury"})
+    @grad_director = User.jury_gradework(1).joins(:roles).where(roles: {name: "Director"})
+    @grad_student = User.jury_gradework(1).joins(:roles).where(roles: {name: "Student"})
   end
 
   # GET /gradeworks/1

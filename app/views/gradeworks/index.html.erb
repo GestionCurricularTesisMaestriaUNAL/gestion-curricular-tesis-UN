@@ -46,9 +46,9 @@
                   data-semester = '<%= gradework.semester %>'  >
                 <td><%= gradework.name %></td>
                 <td><%= gradework.status %></td>
-                <td>Estudiante</td>
+                <td><%= @grad_student[0].firstname %></td>
                 <td>Director</td>
-                <td>Jurados</td>
+                <td><%= @grad_jury[0].firstname %></td>
                 <td><%= gradework.semester %></td>
               </tr>
           <% end %>

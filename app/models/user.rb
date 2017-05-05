@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :gradeworks
   has_and_belongs_to_many :roles
   accepts_nested_attributes_for :roles
+  has_many :feedbacks
 
 
 
@@ -112,6 +113,11 @@ class User < ApplicationRecord
   def self.users_gradework_qualifying()
     joins(:gradeworks).select("users.firstname, users.id")
     .where({ gradeworks: { status: "calificando" } })
+  end
+
+  def self.jury_gradework(id)
+    joins(:gradeworks).select("users.id, users.firstname")
+        .where({ gradeworks: { id: id } })
   end
 
   

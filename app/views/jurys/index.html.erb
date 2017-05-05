@@ -54,20 +54,21 @@
         <div class=scroll>
 
 
-          <%# <% @feedbacks.each do |feed| -%>
+           <% @feedUser.feedbacks.each do |feed| -%>
 
-          <div class="uno">
-            <div class="jury">
-              Pepito Perez
-            </div>
-            <div class="comment">
-              Holaaaaa<%#feed.anotations %>
-            </div>
-            <div class="fecha">
-              10/04/2017
-            </div>
-          </div>
-          <%# end %>
+		          <div class="uno">
+		            <div class="jury">
+		              Pepito Perez
+		            </div>
+		            <div class="comment">
+		             <%= feed.anotations%>
+		            </div>
+		            <div class="fecha">
+		              <%= feed.created_at %>
+		            </div>
+		          </div>
+          <%end %>
+          </div><br><br>
           <div class= cent-button>
             <center>
               <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Nuevo Comentario</button>
@@ -122,7 +123,7 @@
               </div>
             </div>
           </div>
-        </div>
+        
       </div>
     </div>
 
