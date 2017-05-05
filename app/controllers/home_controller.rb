@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
     def home
-      
+
       #p idGrade_url
       @currentgradeworks = current_user.gradeworks
 
