@@ -1,4 +1,5 @@
 class MailTemplatesController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   before_action :set_mail_template, only: [:show, :edit, :update, :destroy]
 
   # GET /mail_templates

@@ -1,4 +1,5 @@
 class CreateRemindersController < ApplicationController
+  skip_before_filter :verify_authenticity_token
   before_action :set_create_reminder, only: [:show, :edit, :update, :destroy]
 
   # GET /create_reminders
@@ -66,7 +67,7 @@ class CreateRemindersController < ApplicationController
     p  params[:files_list]
 
     respond_to do |format|
-      MTemplateMailer.useTemplate(@juriese,  @templates_name).deliver_now
+      # MTemplateMailer.useTemplate(@juriese,  @templates_name).deliver_now
       if @create_reminder.save
 
         format.html { redirect_to @create_reminder, notice: 'Create reminder was successfully created.' }
