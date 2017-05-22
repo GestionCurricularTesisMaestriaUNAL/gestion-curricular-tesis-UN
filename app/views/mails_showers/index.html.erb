@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mails Showers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Nombre</th>
+      <th>Asunto</th>
+    </tr>
+  </thead>
+
+
+
+  <tbody>
+    <% @mails_showers.each do |mails_shower| %>
+      <tr data-id = '<%= mails_shower.id %>'>
+        <td><%= @remindersdate[0]%></td>
+        <td><%= @reminderstime[0]%></td>
+        <td><%= @mailtempname[0]%></td>
+        <td><%= @remindersname[0]%></td>
+        <td><%= link_to 'Show', mails_shower %></td>
+        <td><%= link_to 'Edit', edit_mails_shower_path(mails_shower) %></td>
+        <td><%= link_to 'Destroy', mails_shower, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mails Shower', new_mails_shower_path %>

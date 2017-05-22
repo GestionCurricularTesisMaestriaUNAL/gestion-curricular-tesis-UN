@@ -1,0 +1,17 @@
+<%= form_for(mails_shower) do |f| %>
+  <% if mails_shower.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mails_shower.errors.count, "error") %> prohibited this mails_shower from being saved:</h2>
+
+      <ul>
+      <% mails_shower.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

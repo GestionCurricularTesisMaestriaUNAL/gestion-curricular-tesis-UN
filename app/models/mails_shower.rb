@@ -1,0 +1,2 @@
+class MailsShower < ApplicationRecord
+end
