@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  
 
-  get 'show_mails/index'
-
+  resources :mails_showers
   resources :create_reminders
   resources :mail_templates
   resources :show_mail
@@ -10,6 +8,8 @@ Rails.application.routes.draw do
   get 'mail_templates/index'
   get 'administrator/home'
   get 'reminders/index'
+  get 'mails_showers/index'
+
 
   devise_for :users
 

@@ -46,9 +46,42 @@
                   data-semester = '<%= gradework.semester %>'  >
                 <td><%= gradework.name %></td>
                 <td><%= gradework.status %></td>
-                <td> Student</td>
-                <td> Director </td>
-                <td> Jury </td>
+                <td>
+                  <% gradework.users.each do |user| %>
+                    <% user.roles.each do |role| %>
+                      <% if role.name == 'Student' %>
+                        <%= user.firstname %>
+                        <% if  user.lastname%>
+                          <%= user.lastname %>
+                        <% end %>
+                      <% end %>
+                    <% end %>          
+                  <% end %>
+                </td>
+                <td>
+                <% gradework.users.each do |user| %>
+                    <% user.roles.each do |role| %>
+                      <% if role.name == 'Director' %>
+                        <%= user.firstname %>
+                        <% if  user.lastname%>
+                          <%= user.lastname %>
+                        <% end %>
+                      <% end %>
+                    <% end %>          
+                  <% end %>
+                </td>
+                <td><% gradework.users.each do |user| %>
+                    <% user.roles.each do |role| %>
+                      <% if role.name == 'Jury' %>
+                        <%= user.firstname %>
+                        <% if  user.lastname%>
+                          <%= user.lastname %>
+                        <% end %>
+                      <% end %>
+                    <% end %>          
+                  <% end %>
+      
+                  </td>
                 <td> gradework.semester </td>
               </tr>
           <% end %>

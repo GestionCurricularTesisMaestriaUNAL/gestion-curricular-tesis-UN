@@ -4,8 +4,16 @@
       Está en:&nbsp;
       <a href="#" target="_self" title="Inicio"><b>Inicio</b></a></div>
     <br>
-
-    <h1>Jurado</h1>
+    
+    <h1>
+    <% if current_user.roles[0].name == 'Student' %>
+      Estudiante
+    <% elsif current_user.roles[0].name == 'Jury' %>
+      Jurado
+    <% elsif current_user.roles[0].name == 'Director' %>
+      Director
+    <% end %>
+    </h1>
 
     <div class="Dtab">
       <button class="tablinks" onclick="openItem(event, 'miTesis')" id="defaultOpen">Tesis</button>
