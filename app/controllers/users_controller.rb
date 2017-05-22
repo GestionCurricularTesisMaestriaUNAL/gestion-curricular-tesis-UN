@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
 
-        WelcomeMailer.notify(@user).deliver_now
+        WelcomeMailer.notify(@user).deliver_later!
      #   user_id = @user.id
      #   RoleUser.create(role_id: user_id, user_id: user_id)
 
