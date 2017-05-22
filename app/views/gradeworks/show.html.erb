@@ -35,10 +35,34 @@
           <p>Nombre: <%= @gradework.name %></p>
         </div>
         <div class="tesis-text">
-          <p>Director: <%= @gradework.users[0].firstname %></p>
+          <p>Director:</p>
+          <% @gradework.users.each do |user| %>
+            <% user.roles.each do |role| %>
+              <% if role.name == 'Director' %>
+                <%= user.firstname %>
+              <% end %>
+            <% end %>          
+          <% end %>
         </div>
         <div class="tesis-text">
-          <p>Jurados: <td><%= @gradework.users[0].firstname %></td></p>
+          <p>Jurados:</p>
+          <% @gradework.users.each do |user| %>
+            <% user.roles.each do |role| %>
+              <% if role.name == 'Jury' %>
+                <%= user.firstname %>
+              <% end %>
+            <% end %>          
+          <% end %>
+        </div>
+        <div class="tesis-text">
+        <p>Estudiante: </p>
+          <% @gradework.users.each do |user| %>
+            <% user.roles.each do |role| %>
+              <% if role.name == 'Student' %>
+                <%= user.firstname %>
+              <% end %>
+            <% end %>          
+          <% end %>
         </div>
         <div class="tesis-text">
           <p>Estado: <%= @gradework.status %></p>
