@@ -57,7 +57,7 @@ class GradeworksController < ApplicationController
     @gradework.users << User.find(juries)
     end
 
-    if params.has_key?(:directors) and params[:directors] =! ""
+    if params.has_key?(:directors) and params[:directors] != ""
     directors = params[:directors]
     @gradework.users << User.find(directors)
     end
