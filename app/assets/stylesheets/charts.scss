@@ -2,12 +2,71 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.containerGraph{
+	border: 12px solid green;
+	white-space: nowrap;
+	padding: 20px;
+}
+
 .title{
 	font-size: 60px;
 	border: 2px solid red;
 	margin: 20px 0 20px 0;
+	text-align: center;
+}
+
+.graphStat{
+	border: 2px solid red;
+	width:50%;
 }
 
 .graph1{
 	border: 2px solid red;
+	width: 50%;
+	padding:25px;
+}
+
+.graph2{
+	border: 2px solid red;
+	width: 50%;
+}
+
+.graph3{
+	border: 2px solid red;
+	width: 50%;
+}
+
+.graph4{
+	border: 2px solid red;
+	width: 50%;
+}
+
+.graph5{
+	border: 2px solid red;
+	width: 50%;
+}
+
+.graph6{
+	border: 2px solid red;
+	width: 50%;
+}
+
+.graph7{
+	border: 2px solid red;
+	width: 50%;
+}
+
+.graph8{
+	border: 2px solid red;
+	width: 50%;
+}
+
+.graph9{
+	border: 2px solid red;
+	width: 50%;
+}
+
+.graph10{
+	border: 2px solid red;
+	width: 50%;
 }
