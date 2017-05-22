@@ -46,9 +46,9 @@
                   data-semester = '<%= gradework.semester %>'  >
                 <td><%= gradework.name %></td>
                 <td><%= gradework.status %></td>
-                <td><%= @grad_student[0].firstname%></td>
+                <td><%= @grad_student[0]%></td>
                 <td><%= @grad_director[0] %></td>
-                <td><%= @grad_jury[0].firstname %></td>
+                <td><%= @grad_jury[0]%></td>
                 <td><%= gradework.semester %></td>
               </tr>
           <% end %>
@@ -97,7 +97,7 @@
       <!-- Modal Body -->
       <div class="modal-body">
 
-        <form role="form" id="newForm" action="gradeworks" method="post">
+        <form role="form" id="newForm" action="/gradeworks" method="post">
           <div class="form-group">
             <label for="inputName">Nombre:</label>
             <input type="text" class="form-control"
@@ -107,6 +107,10 @@
             <label for="inputDescription">Descripción:</label>
             <textarea type="text" rows="5" class="form-control"
                       id="inputDescription" placeholder="Ingrese la descripción" name="gradework[description]" required></textarea>
+          <div class="form-group">
+            <label for="inputStatus">Estado:</label>
+              <%= select_tag(:status, options_for_select([["Calificando", "Calificando"], ["Calificado", "Calificado"]]) , multiple: false, :prompt => "Sin Calificar", class: "form-control") %>
+          </div>
           </div>
           <div class="form-group">
             <label for="students">Estudiantes:</label>
@@ -178,6 +182,10 @@
             <label for="editDescription">Descripción:</label>
             <textarea type="text" rows="5" class="form-control"
                       id="editDescription" placeholder="Ingrese la descripción" name="gradework[description]" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editStatus">Estado:</label>
+              <%= select_tag(:status, options_for_select([["Calificando", "Calificando"], ["Calificado", "Calificado"]]) , multiple: false, :prompt => "Sin Calificar", class: "form-control") %>
           </div>
           <div class="form-group">
             <label for="editStudents">Estudiantes:</label>
