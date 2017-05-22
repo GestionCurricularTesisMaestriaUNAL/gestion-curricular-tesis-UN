@@ -3,9 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .containerGraph{
-	border: 12px solid green;
-	white-space: nowrap;
-	padding: 20px;
+    padding: 30px;
+    background-color: white;
+    border-top: 2px solid gray;
+    border-bottom: 2px solid gray;
+    -webkit-box-shadow: 0px -4px 3px rgba(175, 175, 175, 0.75);
+    -moz-box-shadow:    0px -4px 3px rgba(175, 175, 175, 0.75);
+    box-shadow:         0px -4px 3px rgba(175, 175, 175, 0.75);
 }
 
 .title{
@@ -17,13 +21,14 @@
 
 .graphStat{
 	border: 2px solid red;
+	height:300px;
 	width:50%;
+	padding: 30px;
 }
 
 .graph1{
 	border: 2px solid red;
 	width: 50%;
-	padding:25px;
 }
 
 .graph2{
@@ -41,14 +46,18 @@
 	width: 50%;
 }
 
-.graph5{
+.graphStat2{
 	border: 2px solid red;
+	height:300px;
 	width: 50%;
+	padding: 30px;
 }
 
-.graph6{
+.graphStat3{
 	border: 2px solid red;
+	height:300px;
 	width: 50%;
+	padding: 30px;
 }
 
 .graph7{
@@ -58,7 +67,7 @@
 
 .graph8{
 	border: 2px solid red;
-	width: 50%;
+	width: 100%;
 }
 
 .graph9{
@@ -66,7 +75,9 @@
 	width: 50%;
 }
 
-.graph10{
+.graphState4{
 	border: 2px solid red;
+	height:300px;
 	width: 50%;
+	padding: 30px;
 }
