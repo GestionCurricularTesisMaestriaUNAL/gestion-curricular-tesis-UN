@@ -12,9 +12,9 @@ class GradeworksController < ApplicationController
     @juries = User.users_jury
     @directors = User.users_director
     @students = User.users_student
-    @grad_jury = User.jury_gradework(1).joins(:roles).where(roles: {name: "Jury"})
-    @grad_director = User.jury_gradework(1).joins(:roles).where(roles: {name: "Director"})
-    @grad_student = User.jury_gradework(1).joins(:roles).where(roles: {name: "Student"})
+    #@grad_jury = User.role_gradework(1).joins(:roles).where(roles: {name: "Jury"})
+    #@grad_director = User.role_gradework(1).joins(:roles).where(roles: {name: "Director"})
+    #@grad_student = User.role_gradework(1).joins(:roles).where(roles: {name: "Student"})
   end
 
   # GET /gradeworks/1
@@ -40,6 +40,7 @@ class GradeworksController < ApplicationController
     @grad_directors = @gradework.users.joins(:roles).where(roles: {name: "Director"}).ids
     @grad_juries = @gradework.users.joins(:roles).where(roles: {name: "Jury"}).ids
     @grad_students = @gradework.users.joins(:roles).where(roles: {name: "Student"}).ids
+
   end
 
   # POST /gradeworks
@@ -57,7 +58,7 @@ class GradeworksController < ApplicationController
     @gradework.users << User.find(juries)
     end
 
-    if params.has_key?(:directors) and params[:directors] != ""
+    if params.has_key?(:directors) and params[:directors] != [""]
     directors = params[:directors]
     @gradework.users << User.find(directors)
     end
