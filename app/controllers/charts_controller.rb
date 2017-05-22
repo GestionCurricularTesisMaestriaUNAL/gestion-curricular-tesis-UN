@@ -33,14 +33,11 @@ class ChartsController < ApplicationController
       user.roles.each do |role|
         if role.name == "Jury"
           @countJury += 1
-        end
-        if role.name == "Student"
+        elsif role.name == "Student"
           @countStudent += 1
-        end
-        if role.name == "Teacher"
+        elsif role.name == "Director"
           @countTeacher += 1
-        end
-        if role.name == "Administator"
+        elsif role.name == "Administrator"
           @countAdmin += 1
         end
       end
