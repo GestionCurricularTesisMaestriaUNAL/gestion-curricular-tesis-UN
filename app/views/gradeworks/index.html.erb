@@ -280,7 +280,7 @@
                     $('#editDoc').val($(this).data('doc'));
                     $('#editPhone').val($(this).data('phone'));
                     $('#datepicker').val($(this).data('begin_date'));
-                    var action = 'gradeworks/' + ($(this).data('id'))
+                    var action = '/gradeworks/' + ($(this).data('id'))
                     $('#editForm').attr('action', action);
                 }
             } );
@@ -316,7 +316,7 @@
                 },
                 function(){
                     $.ajax({
-                        url: 'gradeworks/' + $(obj).data('id'),
+                        url: '/gradeworks/' + $(obj).data('id'),
                         type: 'DELETE'
                     });
                     swal("Elminado!", "La tesis ha sido eliminado", "success");
