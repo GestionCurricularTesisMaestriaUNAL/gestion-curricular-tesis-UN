@@ -46,10 +46,43 @@
                   data-semester = '<%= gradework.semester %>'  >
                 <td><%= gradework.name %></td>
                 <td><%= gradework.status %></td>
-                <td><%= @grad_student[0]%></td>
-                <td><%= @grad_director[0] %></td>
-                <td><%= @grad_jury[0]%></td>
-                <td><%= gradework.semester %></td>
+                <td>
+                  <% gradework.users.each do |user| %>
+                    <% user.roles.each do |role| %>
+                      <% if role.name == 'Student' %>
+                        <%= user.firstname %>
+                        <% if  user.lastname%>
+                          <%= user.lastname %>
+                        <% end %>
+                      <% end %>
+                    <% end %>          
+                  <% end %>
+                </td>
+                <td>
+                <% gradework.users.each do |user| %>
+                    <% user.roles.each do |role| %>
+                      <% if role.name == 'Director' %>
+                        <%= user.firstname %>
+                        <% if  user.lastname%>
+                          <%= user.lastname %>
+                        <% end %>
+                      <% end %>
+                    <% end %>          
+                  <% end %>
+                </td>
+                <td><% gradework.users.each do |user| %>
+                    <% user.roles.each do |role| %>
+                      <% if role.name == 'Jury' %>
+                        <%= user.firstname %>
+                        <% if  user.lastname%>
+                          <%= user.lastname %>
+                        <% end %>
+                      <% end %>
+                    <% end %>          
+                  <% end %>
+      
+                  </td>
+                <td> gradework.semester </td>
               </tr>
           <% end %>
           </tbody>
@@ -118,7 +151,7 @@
           </div>
           <div class="form-group">
             <label for="directors">Director:</label>
-            <%= select_tag(:directors, options_from_collection_for_select(@directors ,:id, :full_name, @grad_directors), :prompt => "Ninguno", class: "form-control") %>
+            <%= select_tag(:directors, options_from_collection_for_select(@directors ,:id, :full_name, @grad_directors), multiple: true, :prompt => "Ninguno", class: "form-control") %>
           </div>
           <div class="form-group">
             <label for="juries">Jurados:</label>
@@ -171,7 +204,7 @@
       <!-- Modal Body -->
       <div class="modal-body">
 
-        <form role="form" id="editForm" action="" method="post">
+        <form role="form" id="editForm" action="/gradeworks" method="post">
           <input type="hidden" name="_method" value="put" />
           <div class="form-group">
             <label for="editName">Nombre:</label>
@@ -193,7 +226,7 @@
           </div>
           <div class="form-group">
             <label for="editDirector">Director:</label>
-            <%= select_tag(:directors, options_from_collection_for_select(@directors ,:id, :full_name, @grad_directors), :prompt => "Ninguno", class: "form-control") %>
+            <%= select_tag(:directors, options_from_collection_for_select(@directors ,:id, :full_name, @grad_directors), multiple: true, :prompt => "Ninguno", class: "form-control") %>
           </div>
           <div class="form-group">
             <label for="editJuries">Jurados:</label>
@@ -280,7 +313,7 @@
                     $('#editDoc').val($(this).data('doc'));
                     $('#editPhone').val($(this).data('phone'));
                     $('#datepicker').val($(this).data('begin_date'));
-                    var action = 'gradeworks/' + ($(this).data('id'))
+                    var action = '/gradeworks/' + ($(this).data('id'))
                     $('#editForm').attr('action', action);
                 }
             } );
@@ -316,7 +349,7 @@
                 },
                 function(){
                     $.ajax({
-                        url: 'gradeworks/' + $(obj).data('id'),
+                        url: '/gradeworks/' + $(obj).data('id'),
                         type: 'DELETE'
                     });
                     swal("Elminado!", "La tesis ha sido eliminado", "success");

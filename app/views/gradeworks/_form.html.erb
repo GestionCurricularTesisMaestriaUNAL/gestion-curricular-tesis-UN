@@ -31,7 +31,7 @@
       <!-- Aqui va para llamar la lista de estudiantes-->
       <%= f.label :status, 'Estudiante', class: 'label-gradework' %>
       <div class="field">
-        <%= select_tag(:students, options_from_collection_for_select(@students ,:id, :full_name, @grad_students), multiple: true, :prompt => "Ninguno") %>
+        <%= select_tag(:students, options_from_collection_for_select(@students ,:id, :full_name, @grad_students), :prompt => "Ninguno") %>
       </div>
 
       <!-- Aqui va para llamar la lista de Directores-->
