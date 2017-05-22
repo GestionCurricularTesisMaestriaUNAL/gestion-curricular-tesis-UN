@@ -115,7 +115,7 @@ class User < ApplicationRecord
     .where({ gradeworks: { status: "calificando" } })
   end
 
-  def self.jury_gradework(id)
+  def self.role_gradework(id)
     joins(:gradeworks).select("users.id, users.firstname")
         .where({ gradeworks: { id: id } })
   end
