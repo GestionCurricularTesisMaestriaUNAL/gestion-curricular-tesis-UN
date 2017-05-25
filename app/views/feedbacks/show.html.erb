@@ -29,8 +29,9 @@
 				        </table>	
 						</div>
 					</div>
-					<%= link_to 'Editar', edit_feedback_path(@feedback) %> |
-					<%= link_to 'Atras', feedbacks_path %>
+					<button type="button" class="btn btn-warning" data-dismiss="modal" onclick="location.href = '<%=edit_feedback_path(@feedback) %>'">Editar</button>
+					<button type="button" class="btn btn-warning" data-dismiss="" onclick="location.href = '/'">Atras</button>
+					<%= link_to 'Editar', edit_feedback_path(@feedback) %> 
 			</div>
 
 	</section>
