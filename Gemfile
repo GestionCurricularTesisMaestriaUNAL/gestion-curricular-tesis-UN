@@ -38,9 +38,13 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'carrierwave', '~> 0.10.0'
+gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+gem "devise_ldap_authenticatable", :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -71,3 +75,7 @@ gem 'rb-readline'
 gem 'capybara'
 gem 'rspec-rails', '~> 3.0'
 gem 'delayed_job_active_record'
+gem 'cancancan', '~> 1.10'
+gem 'chartkick'
+gem 'groupdate'
+gem 'daemons'

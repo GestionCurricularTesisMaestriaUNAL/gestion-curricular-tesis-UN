@@ -1,10 +1,5 @@
-<div id="page" class="container-fluid contenedorprincipal" >
+<div id="page" class="main-container" >
             <section role="main-content">
-        		<div class="breadcrumb-class">
-            	Está en:&nbsp;
-           		<a href="#" target="_self" title="Inicio"><b>Inicio</b></a></div>
-            	<br>
-				
 				<h1>Director</h1>
 
 				<div class="Dtab">
@@ -15,117 +10,57 @@
 				</div>
 
 				<div class="relleno">
-					<br><br></br></br>					
-					<h1>Aqui podra revisar la información del trabajo de grado y agregar comentarios.</h1>
+					<h1>Tesis activas asignadas:</h1>
+					<div class="assigned-gradework">
+						<div class="gradework-info">
+							<div class="gradework-text">Nombre:</div>
+							<div class="gradework-text">Estudiante:</div>
+							<div class="gradework-text">Estado:</div>
+							<button class="btn btn-success gradework-more-info-btn">Ver más</button>
+						</div>
+					</div>
+					<div class="assigned-gradework">
+						<div class="gradework-info">
+							<div class="gradework-text">Nombre:</div>
+							<div class="gradework-text">Estudiante:</div>
+							<div class="gradework-text">Estado:</div>
+							<button class="btn btn-success gradework-more-info-btn">Ver más</button>
+						</div>
+					</div>
+					<div class="assigned-gradework">
+						<div class="gradework-info">
+							<div class="gradework-text">Nombre:</div>
+							<div class="gradework-text">Estudiante:</div>
+							<div class="gradework-text">Estado:</div>
+							<button class="btn btn-success gradework-more-info-btn">Ver más</button>
+						</div>
+					</div>
 
 				</div>
-				<div id="miTesis" class="panel panel-default">
-				  <div id="miTesis1" class="panel-heading">
-				    <center><h3 id="miTesis2" class="panel-title">Tesis</h3></center>
-				  </div>
-				  <div id="miTesis3" class="panel-body">
-				  	
-				  		<div class="tesis-text">
-					  		<p>Descripcion de la tesis: </p>
-					  	</div>
-					  	<div class="tesis-text">
-						  <p>Nombre: </p>
-						</div>
-						<div class="tesis-text">
-						  <p>Director: </p>
-						</div>
-						<div class="tesis-text">
-						  <p>Jurados: </p>
-						</div>						  
-						<div class="tesis-text">
-						  <p>Fecha de Ingreso: </p>
-						</div>
-						<div class="tesis-text">
-						  <p>Archivos: </p>
-						 </div>
-				  </div>
-				</div>
+              <%= render 'layouts/index' %>
 
 				<div id="comentarios" class="panel panel-default">
 				  <div id="comentarios1" class="panel-heading">
 				    <center><h3 id="comentarios2" class="panel-title">Comentarios</h3></center>
 				  </div>
 				  <div id="comentarios3" class="panel-body">
-				  	<div class=scroll>
+				  	<div class=scroll>	 	
 
-					  	<div class="uno">
-					  		<div class="jury">
-					  			Pepito Perez	
-					  		</div>
-					  		<div class="comment">	
-					  			El trabajo ha sido revisado El trabajo ha sido revisado
-					  			El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-
-					  		</div>
-					  		<div class="fecha">
-					  			10/04/2017
-					  		</div>
-					  	</div>
-
-					  	<div class="uno">
-					  		<div class="jury">
-					  			Pepito Perez	
-					  		</div>
-					  		<div class="comment">	
-					  			El trabajo ha sido revisado El trabajo ha sido revisado
-					  			El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-
-					  		</div>
-					  		<div class="fecha">
-					  			10/04/2017
-					  		</div>
-					  	</div>
-
-
-					  	<div class="uno">
-					  		<div class="jury">
-					  			Pepito Perez	
-					  		</div>
-					  		<div class="comment">	
-					  			El trabajo ha sido revisado El trabajo ha sido revisado
-					  			El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-
-					  		</div>
-					  		<div class="fecha">
-					  			10/04/2017
-					  		</div>
-					  	</div>
-
-
-					  	<div class="uno">
-					  		<div class="jury">
-					  			Pepito Perez	
-					  		</div>
-					  		<div class="comment">	
-					  			El trabajo ha sido revisado El trabajo ha sido revisado
-					  			El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-					  			 El trabajo ha sido revisado El trabajo ha sido revisado
-
-					  		</div>
-					  		<div class="fecha">
-					  			10/04/2017
-					  		</div>
-					  	</div>
+					  
+					    <% @feedUser.feedbacks.each do |feed| -%>
+						          <div class="uno">
+						            <div class="jury">
+						              Pepito Perez
+						            </div>
+						            <div class="comment">
+						             <%= feed.anotations%>
+						            </div>
+						            <div class="fecha">
+						              <%= feed.created_at %>
+						            </div>
+						          </div>
+				        <%end %>
+					</div>
 						
 						<center>
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Nuevo Comentario</button>
@@ -144,23 +79,35 @@
 						        </div>
 						        <div class="modal-body">
 						        	
-						        	<form action="#.rb">									  
-									  Comentario:<br>
-									  <textarea type="text" name="descripcion" class="input-modal-text"></textarea>
-									  <br><br>
-									  Archivo:<br>
-									  <select name="archivo">
-										   <option value="1">Tesis 1</option> 
-										   <option value="2">Tesis 2</option> 
-										   <option value="3">Tesis 3</option>
-										   <option value="10">Tesis 4</option> 
-										   <option value="11">Tesis 5</option> 
-										   <option value="12">Tesis 6</option> 
-									  </select>
-									  <br><br>
-									  <button type="submit" class="btn btn-default" data-dismiss="modal">Agregar</button>
-									  <!-- <input type="submit" value="Agregar"> -->
-									</form> 
+						        	<form role="form" id="newForm" action="/feedbacks" method="post">
+
+						                    <div class="form-group">
+						                      Comentario:<br>
+						                      <textarea  type="text" rows="5" class="form-control"
+						                                 id="inputAnotations" placeholder="Ingrese su comentario"
+						                                 name="anotations" required></textarea>
+						                      <br><br>
+						                    </div>
+
+						                    <div class="form-group">
+						                      Score:<br>
+						                      <input type="number" class="form-control" name="score">
+						                    </div>
+
+						                    <div class="form-group">
+						                      <label for="gradework">Tesis:</label>
+						                      <%= select_tag(:gradework, options_from_collection_for_select(@grad_jury ,:id, :name), :prompt => "Ninguno", class: "form-control", name: "gradework_id") %>
+						                    </div>
+
+						                    <div class="form-group">
+						                      <%#User:<br>%>
+						                      <input type="hidden" class="form-control" name="user_id" value= <%= @cUser %>>
+						                    </div>
+
+						                    <br><br>
+						                    <button type="submit" class="btn btn-default" data-dismiss="">Agregar</button>
+						                    <!-- <input type="submit" value="Agregar"> -->
+                 					 </form>
 						        </div>
 						        <div class="modal-footer">
 						          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
@@ -171,7 +118,7 @@
 
 
 
-					</div>
+					
 				  </div>
 				</div>
 

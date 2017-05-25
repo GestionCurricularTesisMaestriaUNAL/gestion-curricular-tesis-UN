@@ -1,0 +1,208 @@
+<% content_for :head do %>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="/sweetalert-master/dist/sweetalert.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <%= stylesheet_link_tag 'basic' %>
+
+
+<% end %>
+
+<div class="main-container">
+  <div class="container-header">
+    <h1>Mail Templates</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8" >
+        <table id="templateTable" class="display table" cellspacing="0" width="100%">
+          <thead class="thead-inverse">
+          <tr>
+            <th>Asunto</th>
+            <th>Contenido</th>
+          </tr>
+          </thead>
+           <tbody>
+            <% @mail_templates.each do |mail_template| %>
+             <tr>
+               <td><%= mail_template.name %></td>
+                <td><%= mail_template.content %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-4 text-center" style="margin-top:5%;">
+        <div class="crud-button">
+          <button type="button" class="general-circle-button add-button" data-toggle="modal" data-target="#newTemplateModal">
+          </button>
+          <p class="text-button-template">Nuevo<p>
+        </div>
+        <div class="crud-button">
+          <button id="editButton" type="button" class="general-circle-button edit-button crud-button-disabled" data-toggle="modal" data-target="#editTemplateModal" disabled>
+          </button>
+          <p class="text-button-template">Modificar<p>
+        </div>
+        <div class="crud-button">
+          <button id ="deleteButton" type="button" class="general-circle-button delete-button crud-button-disabled" data-id ="0" onclick="deleteTemplate(this)" disabled>
+          </button>
+          <p class="text-button-template" >Eliminar<p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<!-- Modal Nueva Plantilla-->
+<div class="modal fade" id="newTemplateModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close"
+                data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title text-center" id="myModalLabel">
+          Nueva plantilla
+        </h4>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+
+        <form role="form" id="newForm" action="mail_templates" method="post">
+          <div class="form-group">
+            <label for="inputSubject">Asunto:</label>
+            <input type="text" class="form-control"
+                   id="inputSubject" placeholder="Ingrese el asunto" name="mail_template[name]" required/>
+          </div>
+          <div class="form-group">
+            <label for="inputContent">Contenido:</label>
+            <textarea type="text" rows="5" class="form-control"
+                      id="inputContent" placeholder="Ingrese el contenido" name="mail_template[content]" required></textarea>
+          </div>
+          <div id="msgBoard"></div>
+
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Crear template</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Editar Plantilla-->
+<div class="modal fade" id="editTemplateModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <button type="button" class="close"
+                data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+          <span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title text-center" id="myModalLabel">
+          Editar Plantilla
+        </h4>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+
+        <form role="form" id="editForm" action="" method="post">
+          <input type="hidden" name="_method" value="put" />
+          <div class="form-group">
+            <label for="editSubject">Asunto:</label>
+            <input type="text" class="form-control"
+                   id="editSubject" placeholder="Ingrese el asunto" name="mail_template[name]" required/>
+          </div>
+          <div class="form-group">
+            <label for="editContent">Contenido:</label>
+            <textarea type="text" rows="5" class="form-control"
+                      id="editContent" placeholder="Ingrese el contenido" name="mail_template[content]" required></textarea>
+          </div>
+         
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Editar Plantilla</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+
+<% content_for :bottom do %>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="/sweetalert-master/dist/sweetalert.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#templateTable').DataTable();
+
+            $('#templateTable tbody').on( 'click', 'tr', function () {
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                    $('#editButton').prop( "disabled", true );
+                    $('#editButton').addClass('crud-button-disabled');
+                    $('#deleteButton').prop( "disabled", true );
+                    $('#deleteButton').addClass('crud-button-disabled');
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    $('#editButton').prop( "disabled", false );
+                    $('#editButton').removeClass('crud-button-disabled');
+                    $('#deleteButton').prop( "disabled", false );
+                    $('#deleteButton').removeClass('crud-button-disabled');
+                    $('#deleteButton').data('id', $(this).data('id')) ;
+                    $('#editSubject').val($(this).data('name'));
+                    $('#editContent').val($(this).data('content'));
+                    $('#editForm').attr('action', action);
+                }
+            } );
+        } );
+
+
+    </script>
+
+    <script>
+        //Warning Message
+        function deleteTemplate(obj){
+            swal({
+                    title: "Está seguro?",
+                    text: "No se podran recuperar lo datos de la plantilla en un futuro",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Confirmar",
+                    closeOnConfirm: false
+                },
+                function(){
+                    $.ajax({
+                        url: 'mail_templates/' + $(obj).data('id'),
+                        type: 'DELETE'
+                    });
+                    swal("Elminado!", "La plantilla ha sido eliminada", "success");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 1000);
+                });
+        }
+    </script>
+<% end %>

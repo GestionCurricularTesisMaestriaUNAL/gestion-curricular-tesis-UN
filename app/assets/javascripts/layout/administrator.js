@@ -1,9 +1,19 @@
 function link_to_users(){
-	
-	location.href="http://localhost:3000/users"
+
+	location.href="/users"
 }
 
 function link_to_grades(){
-	
-	location.href="http://localhost:3000/gradeworks"
+
+	location.href="/gradeworks"
+}
+
+function link_to_charts(){
+
+	location.href="/charts"
+}
+
+function link_to_reminders(){
+
+	location.href="/create_reminders"
 }

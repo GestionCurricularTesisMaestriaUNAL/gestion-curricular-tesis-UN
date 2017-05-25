@@ -1,4 +1,5 @@
 <div class="main-container">
+    <%= render partial: "partials/user_panel" %>
     <div class="container-header">
         <h1>Administrador</h1>
     </div>
@@ -16,20 +17,21 @@
                 <p class="text-button-admin">Tesis<p>
             </div>
             <div class="col-sm-offset-1 col-sm-2">
-                <button type="button" class="general-circle-button mail-button">
+                <button type="button" class="general-circle-button mail-button" onclick="link_to_reminders()">
                 </button>
                 <p class="text-button-admin">Recordatorios<p>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-offset-2 col-sm-2">
-                <button type="button" class="general-circle-button statistics-button">
+                <button type="button" class="general-circle-button statistics-button" onclick="link_to_charts()">
                 </button>
                 <p class="text-button-admin">Estadisticas<p>
             </div>
             <div class="col-sm-offset-1 col-sm-2">
                 <button type="button" class="general-circle-button calendar-button">
                 </button>
+
                 <p class="text-button-admin">Calendario<p>
             </div>
             <div class="col-sm-offset-1 col-sm-2">

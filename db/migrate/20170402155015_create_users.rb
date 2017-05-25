@@ -3,7 +3,6 @@ class CreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       t.string :firstname
       t.string :lastname
-      t.string :email
       t.integer :identification
       t.integer :phone
 

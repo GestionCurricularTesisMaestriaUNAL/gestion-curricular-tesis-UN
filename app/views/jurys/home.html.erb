@@ -17,10 +17,10 @@
 					<div>
 					  <div class="scroll">
 					  
-						<% @gradeworks.each do |gradework| %>	
+						<% @grad_jury.each do |gradework| %>	
 
 						<div class="Duno">
-							<form role="form" id="editForm" action="" method="post">
+							<form role="form" id="editForm" action="/gradeworks/index" method="post">
 							<div class="form-group">
 								<label for="editDoc">Nombre Trabajo de Grado:</label><br>
 								<%=gradework.name%>
@@ -28,18 +28,20 @@
 							
 							<div class="form-group">
 								<label for="editDoc">Estudiante:</label><br>
-								Estudiante
+								<%= @gradework_id %>
 								<!-- < gradework.users.where(users.roles.name: "Student").each do |estudiante| %>  <estudiante.name %><end%> -->
 							</div>	
 							
 							<div class="form-group">
 								<label for="editDoc">Descripción:</label><br>
-								Descripción
+								<%=gradework.description%>
 							</div>	
+							
+							<input type="hidden" id="idG" name="idGrade" value=<%=gradework.id%>></input> 
 							
 							</form>		
 							
-							<button type="button" class="btn btn-default">Ver mas</button>	
+							<button type="submit" class="btn btn-default" >Ver mas</button>	
 							
 						</div>
 						

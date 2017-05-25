@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   skip_before_filter :verify_authenticity_token
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
   # GET /users
   # GET /users.json
   def index
     @users = User.all
+    @totaluser = User.all.extend(DescriptiveStatistics)
   end
 
   # GET /users/1
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
 
-        WelcomeMailer.notify(@user).deliver_now
+        WelcomeMailer.notify(@user).deliver_later!
      #   user_id = @user.id
      #   RoleUser.create(role_id: user_id, user_id: user_id)
 
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   end
 
   # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
+  # PATCH/PUT /users/1.jso
   def update
 
     @user.roles = []

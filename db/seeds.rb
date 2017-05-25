@@ -21,7 +21,7 @@
 
 Feedback.destroy_all
 FileGradework.destroy_all
-Role.destroy_all
+#Role.destroy_all
 User.destroy_all
 Gradework.destroy_all
 RoleUser.destroy_all
@@ -37,76 +37,79 @@ roles = ['Student', 'Administrator', 'Jury', 'Director']
   )
 end
 
-p "Created #{Role.count} Roles"
+#p "Created #{Role.count} Roles"
 
-100.times do |index|
-  User.create!(firstname: Faker::Name.first_name,
-                lastname: Faker::Name.last_name,
-                email: Faker::Internet.free_email,
-                phone: Faker::Number.number(7),
-                identification: Faker::Number.number(7)
-  )
+ # 100.times do |index|
+ #   User.create!(
+ #                 username: Faker::Name.first_name,
+ #                 firstname: Faker::Name.first_name,
+ #                 lastname: Faker::Name.last_name,
+ #                 email: Faker::Internet.free_email,
+ #                 phone: Faker::Number.number(7),
+ #                 identification: Faker::Number.number(7),
+ #                 password: '123456'
+ #   )
 
-end
+ # end
 
-p "Created #{User.count} Users"
-
-
-
-100.times do |index|
-    Gradework.create!(
-        name: Faker::StarWars.character,
-        description: Faker::StarWars.wookie_sentence,
-        delivery_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
-        begin_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
-        hour: Faker::Time.between(DateTime.now - 1, DateTime.now),
-        locale: Faker::Address.street_address,
-        semester: Faker::Number.between(1, 10),
-        status: status[Faker::Number.between(0, 2)]
-    )
-
-end
-
-p "Created #{Gradework.count} Gradeworks"
-
-100.times do |index|
-  Feedback.create!(
-               user_id: User.ids.sample,
-               gradework_id: Gradework.ids.sample,
-               score: Faker::Number.between(1, 5),
-               anotations: Faker::Lorem.paragraph)
-end
-
-p "Created #{Feedback.count} Feedbacks"
-
-
-100.times do |index|
-  FileGradework.create!(
-      name: Faker::StarWars.character,
-      path: Faker::File.file_name('path/to'),
-      description: Faker::Lorem.paragraph,
-      size: Faker::Number.between(1, 10),
-      gradework_id: Gradework.ids.sample
-  )
-end
-
-p "Created #{FileGradework.count} FileGradeworks"
-
-
-100.times do |index|
-  GradeworkUser.create!(
-      gradework_id: Gradework.ids.sample,
-      user_id: User.ids.sample
-  )
-end
-
-p "Created #{GradeworkUser.count} GradeworkUser"
-
-#100.times do |index|
-#  RoleUser.create!(
-#      role_id: Role.ids.sample,
-#      user_id: User.ids.sample
-#  )
-#end
-
-p "Created #{RoleUser.count} RoleUser"
+ # p "Created #{User.count} Users"
+#
+#
+#
+# 100.times do |index|
+#     Gradework.create!(
+#         name: Faker::StarWars.character,
+#         description: Faker::StarWars.wookie_sentence,
+#         delivery_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
+#         begin_date: Faker::Date.between_except(1.year.ago, 1.year.from_now, Date.today),
+#         hour: Faker::Time.between(DateTime.now - 1, DateTime.now),
+#         locale: Faker::Address.street_address,
+#         semester: Faker::Number.between(1, 10),
+#         status: status[Faker::Number.between(0, 2)]
+#     )
+#
+# end
+#
+# p "Created #{Gradework.count} Gradeworks"
+#
+# 100.times do |index|
+#   Feedback.create!(
+#                user_id: User.ids.sample,
+#                gradework_id: Gradework.ids.sample,
+#                score: Faker::Number.between(1, 5),
+#                anotations: Faker::Lorem.paragraph)
+# end
+#
+# p "Created #{Feedback.count} Feedbacks"
+#
+#
+# 100.times do |index|
+#   FileGradework.create!(
+#       name: Faker::StarWars.character,
+#       path: Faker::File.file_name('path/to'),
+#       description: Faker::Lorem.paragraph,
+#       size: Faker::Number.between(1, 10),
+#       gradework_id: Gradework.ids.sample
+#   )
+# end
+#
+# p "Created #{FileGradework.count} FileGradeworks"
+#
+#
+# 100.times do |index|
+#   GradeworkUser.create!(
+#       gradework_id: Gradework.ids.sample,
+#       user_id: User.ids.sample
+#   )
+# end
+#
+# p "Created #{GradeworkUser.count} GradeworkUser"
+#
+# #100.times do |index|
+# #  RoleUser.create!(
+# #      role_id: Role.ids.sample,
+# #      user_id: User.ids.sample
+# #  )
+# #end
+#
+# p "Created #{RoleUser.count} RoleUser"

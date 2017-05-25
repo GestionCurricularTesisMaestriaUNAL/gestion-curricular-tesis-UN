@@ -14,13 +14,16 @@ module GestionMaestria
     config.active_record.raise_in_transactional_callbacks = true
 
     config.active_job.queue_adapter = :delayed_job
-    config.action_mailer.default_url_options = {host: 'ejemplo.com'}
+    config.action_mailer.default_url_options = {host: '184.173.153.201'}
 
     config.action_mailer.delivery_method = :smtp
+    # SMTP settings for gmail
     config.action_mailer.smtp_settings = {
-    	address: 'localhost',
-    	port: 1025
+        :address              => "smtp.mailgun.org",
+        :port                 => 587,
+        :user_name            => "postmaster@sandbox88527bb0d4fa4ce7a08456157e47c8da.mailgun.org",
+        :password             => "a79ba1f7f509e621847ecd2c0de08b41",
+        :authentication       => "plain",
     }
-    
   end
 end

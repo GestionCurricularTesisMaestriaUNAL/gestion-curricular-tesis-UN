@@ -1,0 +1,37 @@
+<div id="miTesis" class="panel panel-default">
+<div id="miTesis1" class="panel-heading">
+<center><h3 id="miTesis2" class="panel-title"><%= @currentgradeworks.count %> Tesis asignadas</h3></center>
+      </div>
+          <div id="miTesis3" class="panel-body">
+
+<% @currentgradeworks.each do |grade| -%>
+            <!-- <input type="hidden" id="idGr" name="idGraw"></input> -->
+
+            <div class="tesis-text">
+              <p>Descripcion de la tesis: </p>
+</div>
+            <div class="tesis-text">
+              <p>Nombre: <%= grade.name %></p>
+</div>
+            <div class="tesis-text">
+              <p>Director: <%= grade.users.name %></p>
+</div>
+            <div class="tesis-text">
+              <p>Jurados: <%=  grade.users.name %></p>
+</div>
+            <div class="tesis-text">
+              <p>Fecha de Ingreso: <%= grade.begin_date %></p>
+</div>
+            <div class="tesis-text">
+              <p>Archivos:</p>
+<% grade.filegradeworks.each do |file| -%>
+               <%= file.name %>
+<%end %>
+</div>
+                <%= link_to 'Detalles', gradework_path(grade) %>
+                <br>
+                <hr>
+                <br>
+            <%end %>
+          </div>
+</div>

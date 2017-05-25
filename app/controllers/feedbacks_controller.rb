@@ -1,6 +1,6 @@
 class FeedbacksController < ApplicationController
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
-
+  skip_before_filter :verify_authenticity_token
   # GET /feedbacks
   # GET /feedbacks.json
   def index
@@ -25,13 +25,14 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks.json
   def create
     @feedback = Feedback.new(feedback_params)
+    #p feedback_params
 
     respond_to do |format|
-      if @feedback.save
+      if @feedback.save!
         format.html { redirect_to @feedback, notice: 'Feedback was successfully created.' }
         format.json { render :show, status: :created, location: @feedback }
       else
-        format.html { render :new }
+        format.html { render :new, notice: 'Feedback was not created.' }
         format.json { render json: @feedback.errors, status: :unprocessable_entity }
       end
     end
@@ -69,6 +70,6 @@ class FeedbacksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def feedback_params
-      params.require(:feedback).permit(:anotations, :score, :gradework, :user)
+      params.permit(:anotations, :score, :gradework_id, :user_id)
     end
 end
