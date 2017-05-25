@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/gestion-curricular-tesis-UN.iml" filepath="$PROJECT_DIR$/.idea/gestion-curricular-tesis-UN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../mailer/.idea/mailer.iml" filepath="$PROJECT_DIR$/../mailer/.idea/mailer.iml" />
       <module fileurl="file://$PROJECT_DIR$/../mydrop/.idea/mydrop.iml" filepath="$PROJECT_DIR$/../mydrop/.idea/mydrop.iml" />
       <module fileurl="file://$PROJECT_DIR$/../mydropzone/.idea/mydropzone.iml" filepath="$PROJECT_DIR$/../mydropzone/.idea/mydropzone.iml" />
     </modules>
