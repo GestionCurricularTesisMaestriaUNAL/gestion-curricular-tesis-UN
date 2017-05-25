@@ -1,9 +1,6 @@
 <div id="page" class="container-fluid contenedorprincipal" >
             <section role="main-content">
-        		<div class="breadcrumb-class">
-            	Está en:&nbsp;
-           		<a href="#" target="_self" title="Inicio"><b>Inicio</b></a></div>
-            	<br>
+							<%= render partial: "partials/user_panel" %>
 				
 				<center>
 				<div class="fondo">				
@@ -28,7 +25,16 @@
 							
 							<div class="form-group">
 								<label for="editDoc">Estudiante:</label><br>
-								<%= @gradework_id %>
+								<% gradework.users.each do |user| %>
+                    <% user.roles.each do |role| %>
+                      <% if role.name == 'Student' %>
+                        <%= user.firstname %>
+                        <% if  user.lastname%>
+                          <%= user.lastname %>
+                        <% end %>
+                      <% end %>
+                    <% end %>          
+                  <% end %>
 								<!-- < gradework.users.where(users.roles.name: "Student").each do |estudiante| %>  <estudiante.name %><end%> -->
 							</div>	
 							

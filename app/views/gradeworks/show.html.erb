@@ -1,9 +1,8 @@
 <div id="page" class="container-fluid contenedorprincipal" >
+
+
   <section role="main-content">
-    <div class="breadcrumb-class">
-      Está en:&nbsp;
-      <a href="#" target="_self" title="Inicio"><b>Inicio</b></a></div>
-    <br>
+    <%= render partial: "partials/user_panel" %>
     
     <h1>
     <% if current_user.roles[0].name == 'Student' %>

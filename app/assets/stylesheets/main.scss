@@ -65,6 +65,7 @@ h3 {
 	margin-left:auto;
 	margin-right:auto;
     padding-right: 40px;
+    padding-top: 30px;
 
 }
 
@@ -84,7 +85,6 @@ h3 {
     font-size:13px;
     line-height: 30px;
     color: #323232;
-    margin: 50px 0 0 0;
     border-bottom: 1px dotted #646464;
 }
 
@@ -176,6 +176,8 @@ h3 {
 .gradework-more-info-btn{
     margin-top: 40px;
 }
+
+
 /////
 
 /* Style the buttons inside the tab */
@@ -192,6 +194,21 @@ h3 {
 /* Change background color of buttons on hover */
 .tablinks :hover {
     background-color: #ddd;
+}
+.Duno{
+	border: solid 3px ;
+	border-style: outset;
+	width: 500px;
+	height: auto;
+	align-content: center;
+	position: relative;
+	float: left;
+	margin: 5px;
+	margin-left: 40px;
+	margin-right: 20px;
+	border-radius: 10px;
+	padding-top: 6px;
+	padding-bottom: 6px;
 }
 
 /* Create an active/current tablink class */
@@ -240,7 +257,7 @@ h3 {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
-    width: 325px;
+    width: 335px;
     margin-bottom: 10px;
 }
 
