@@ -2,6 +2,7 @@ class Gradework < ApplicationRecord
 
   has_and_belongs_to_many :users
   has_many :filegradeworks, class_name: "FileGradework"
+  has_many :createreminders, class_name: "CreateReminder"
   has_many :feedbacks, dependent: :destroy 
 
   validates :name, presence: true

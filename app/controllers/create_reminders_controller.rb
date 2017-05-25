@@ -48,23 +48,46 @@ class CreateRemindersController < ApplicationController
   # POST /create_reminders.json
   def create
     @create_reminder = CreateReminder.new(create_reminder_params)
-    if params.has_key?(:students) and params[:students] != [""]
-    students = params[:students]
-    @create_reminder.users << User.find(students)
+    if params.has_key?(:student) and params[:student] != [""]
+    student = params[:student]
+    if (student == "on")
+      @create_reminder.student = true
+    else
+      @create_reminder.student = false
+    end
+    #@create_reminder.users << User.find(students)
     end
 
-    if params.has_key?(:juries) and params[:juries] != [""]
-    juries = params[:juries]
-    @create_reminder.users << User.find(juries)
+    if params.has_key?(:jury) and params[:jury] != [""]
+    jury = params[:jury]
+    if (jury == "on")
+      @create_reminder.jury = true
+    else
+      @create_reminder.jury = false
+    end
     end
 
-    if params.has_key?(:directors) and params[:directors] =! ""
-    directors = params[:directors]
-    @create_reminder.users << User.find(directors)
+    if params.has_key?(:director) and params[:director] =! ""
+    director = params[:director]
+    if (director == "on")
+      @create_reminder.director = true
+    else
+      @create_reminder.director = false
+    end
+      #@create_reminder.users << User.find(directors)
     end
 
-    p params.has_key?(:files_list)
-    p  params[:files_list]
+    if params.has_key?(:gradework) and params[:gradework] != [""]
+      gradework = params[:gradework]
+      @create_reminder.gradework = Gradework.find(gradework)
+    end
+
+    if params.has_key?(:mail_template) and params[:mail_template] != [""]
+      mail = params[:mail_template]
+      @create_reminder.mail_template = MailTemplate.find(mail)
+    end
+
+    @create_reminder.date = params[:date]
 
     respond_to do |format|
       # MTemplateMailer.useTemplate(@juriese,  @templates_name).deliver_now
@@ -111,6 +134,6 @@ class CreateRemindersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def create_reminder_params
-      params.require(:create_reminder).permit(:state, :date, :time, :datetime)
+      params.require(:create_reminder).permit(:state, :date, :time, :datetime, :gradework, :mail_template)
     end
 end

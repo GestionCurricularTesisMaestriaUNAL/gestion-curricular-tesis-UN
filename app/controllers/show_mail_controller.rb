@@ -1,2 +1,0 @@
-class ShowMailController < ApplicationController
-end

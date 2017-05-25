@@ -1,5 +1,9 @@
 class CreateReminder < ApplicationRecord
 
+
+  belongs_to :gradework
+  belongs_to :mail_template
+
   def self.reminder_date()
     joins(:roles).select("create_reminders.date")
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170522044247) do
+ActiveRecord::Schema.define(version: 20170525140609) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,8 +25,15 @@ ActiveRecord::Schema.define(version: 20170522044247) do
     t.date     "date"
     t.time     "time"
     t.datetime "datetime"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "gradework_id"
+    t.integer  "mail_template_id"
+    t.boolean  "jury"
+    t.boolean  "director"
+    t.boolean  "student"
+    t.index ["gradework_id"], name: "index_create_reminders_on_gradework_id", using: :btree
+    t.index ["mail_template_id"], name: "index_create_reminders_on_mail_template_id", using: :btree
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -139,6 +146,8 @@ ActiveRecord::Schema.define(version: 20170522044247) do
     t.index ["username"], name: "index_users_on_username", using: :btree
   end
 
+  add_foreign_key "create_reminders", "gradeworks"
+  add_foreign_key "create_reminders", "mail_templates"
   add_foreign_key "feedbacks", "gradeworks"
   add_foreign_key "feedbacks", "users"
   add_foreign_key "file_gradeworks", "gradeworks"

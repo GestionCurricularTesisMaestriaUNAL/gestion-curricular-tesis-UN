@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :create_reminders
   resources :mail_templates
   resources :show_mail
+  resources :reminders
 
   get 'mail_templates/index'
   get 'administrator/home'

@@ -46,16 +46,16 @@
             <form action="create_reminders" method="POST">
                 <div class="form-group">
                     <label>Tesis:</label>
-                    <%= select_tag(:gradeworks, options_from_collection_for_select(@gradeworks ,:id, :name, @grad_tesis), :prompt => "Ninguno", class: "form-control")  %>
+                    <%= select_tag(:gradework, options_from_collection_for_select(@gradeworks ,:id, :name, @grad_tesis), :prompt => "Ninguno", class: "form-control")  %>
                 </div>
                 <div class="form-group">
                     <label>Tipo de correo:</label>
-                    <%= select_tag(:mail_templates, options_from_collection_for_select(@mail_templates ,:id, :name, @templates_name), :prompt => "Ninguno", class: "form-control") %>
+                    <%= select_tag(:mail_template, options_from_collection_for_select(@mail_templates ,:id, :name, @templates_name), :prompt => "Ninguno", class: "form-control") %>
                 </div>
                 <div class="form-group date">
                     <label for="inputDate">Fecha de envio:</label>
                     <div class="input-group input-append date" id="datePicker">
-                    <input type="text" class="form-control" name="create_reminder[date]" />
+                    <input type="text" class="form-control" name="date" />
                     <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                 </div>
@@ -71,13 +71,13 @@
                     <input type="checkbox" name="Jury">Jurados<br>
                     <input type="checkbox" name="Student">Estudiante<br> -->
                     <div class="checkbox-mailto">
-                        <%= check_box_tag(@grad_email_directors, 'Director', checked = false, id: @directorse, style: "margin-right:10px")%>Director
+                      <input name="director" type="checkbox">Director
                     </div>
                     <div class="checkbox-mailto">
-                        <%= check_box_tag(@grad_email_juries, 'Jurado', checked = false, email: @juriese, style: "margin-right:10px")%>Jurados
+                      <input name="jury" type="checkbox">Jurado
                     </div>
                     <div class="checkbox-mailto">
-                        <%= check_box_tag(@grad_email_students, 'Estudiante', checked = false,  id: @studentse, style: "margin-right:10px")%>Estudiante
+                      <input name="student" type="checkbox">Estudiantes
                     </div>
                 </div>
                 <!--<%= hidden_field_tag(:state, "Programado") %>-->
