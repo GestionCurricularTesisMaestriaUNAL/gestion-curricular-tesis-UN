@@ -69,6 +69,10 @@ class GradeworksController < ApplicationController
     respond_to do |format|
       if @gradework.save!
 
+        @gradework.users.each do |us|
+          GradeMailer.gradeMail(us ,@gradework).deliver_later!
+        end
+
         # if params.has_key?(:files_list)
         #   files_list = ActiveSupport::JSON.decode(params[:files_list])
         #   # product=Product.create(name: params[:name], description: params[:description])

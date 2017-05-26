@@ -89,7 +89,7 @@ class CreateRemindersController < ApplicationController
       # MTemplateMailer.useTemplate(@juriese,  @templates_name).deliver_now
       if @create_reminder.save
 
-        format.html { redirect_to @create_reminder, notice: 'Create reminder was successfully created.' }
+        format.html { redirect_to administrator_home_url , notice: 'Create reminder was successfully created.' }
         format.json { render :show, status: :created, location: @create_reminder }
       else
         format.html { render :new }
